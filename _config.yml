@@ -21,9 +21,8 @@
 title: Hover Documentation
 
 # Build settings
-theme: minima
-plugins:
-  - jekyll-feed
+theme: elea
+remote_theme: usehover/elea
 
 # Exclude from processing.
 # The following items will not be processed, by default.
