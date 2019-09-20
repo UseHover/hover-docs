@@ -21,7 +21,7 @@
 title: Hover Documentation
 
 # Build settings
-theme: elea
+theme: minima
 plugins:
   - jekyll-feed
 
