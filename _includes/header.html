@@ -1,0 +1,45 @@
+<nav class="navbar is-dark is-family-secondary has-text-weight-semibold" role="navigation" aria-label="navigation">
+  <div class="container is-fluid">
+    <div class="navbar-brand">
+      <a href="/">
+        <img src="/assets/images/hover-logo-white.png">
+      </a>
+      <a role="button" id="nav-btn" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="#hoverTabs">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="hoverTabs" class="navbar-menu">
+      <div class="navbar-start">
+        <a id="docs-tab" href="{{ '/' | relative_url }}" class="navbar-item">Docs</a>
+        <a id="pricing-tab" href="https://usehover.com/pricing" class="navbar-item">Pricing</a>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item is-hidden-mobile">
+          <div class="buttons are-large">
+            <a href="https://www.usehover.com/u/sign_up" class="button is-primary" target="_blank">Get started free</a>
+            <a href="https://www.usehover.com/u/sign_in" class="button is-dark" target="_blank">Sign in</a>
+          </div>
+        </div>
+        <div class="is-hidden-tablet">
+          <a href="https://www.usehover.com/u/sign_in" class="navbar-item" target="_blank">Sign in</a>
+          <a href="https://www.usehover.com/u/sign_up" class="navbar-item is-primary" target="_blank">Get started free</a>
+          <hr class="navbar-divider">
+          <a target="_blank" class="navbar-item pop" href="https://medium.com/use-hover">Blog</a>
+          <a target="_blank" class="navbar-item pop" href="https://www.usehover.com/javadoc">Javadocs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('nav-btn').onclick = function() {
+      document.getElementById('nav-btn').classList.toggle('is-active');
+      document.getElementById('hoverTabs').classList.toggle('is-active');
+    }
+  });
+</script>
