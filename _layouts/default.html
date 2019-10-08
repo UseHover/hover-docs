@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  </head>
+  <body class="docs">
+    <div class="is-family-secondary is-dark">
+      {%- include header.html -%}
+      <div class="container is-fluid">
+        <div class="columns content-container">
+          <div class="column is-narrow is-hidden-mobile">
+            {%- include sidebar.html -%}
+          </div>
+          <div class="column"></div>
+          <div class="column is-three-fifths main-content">
+            {{ content }}
+          </div>
+          <div class="column"></div>
+          <div class="column"></div>
+        </div>
+      </div>
+      {%- include footer.html -%}
+    </div>
+    {%- include code_copier.html -%}
+  </body>
+</html>

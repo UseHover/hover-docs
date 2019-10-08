@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/solarized-dark.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		var pre = document.getElementsByTagName('pre');
+		for (var i = 0; i < pre.length; i++) {
+			if (pre[i].children[0].tagName == 'CODE') {
+				var container = document.createElement('div');
+				container.className = 'copy-button';
+				container.textContent = 'Copy';
+
+				pre[i].append(container);
+				container.addEventListener("click", copy);
+			}
+		}
+
+		function copy(event) {
+			var button = event.target;
+			var elem = event.target.previousElementSibling;
+
+			var targetId = "_hiddenCopyText_";
+			var target = document.getElementById(targetId); // use a temporary form element for the selection and copy
+			if (!target) {
+				target = document.createElement("textarea");
+				target.style.position = "fixed";
+				target.style.left = "-999px";
+				target.style.top = "0";
+				target.id = targetId;
+				document.body.appendChild(target);
+			}
+			target.textContent = elem.textContent;
+			// select the content
+			target.focus();
+			target.setSelectionRange(0, target.value.length);
+			
+			try {
+				var succeed = document.execCommand("copy");
+			} catch(e) {
+				var succeed = false;
+			}
+			if (succeed) { 
+				button.textContent = 'Copied';
+				button.classList.add('success');
+				window.setTimeout(function() {
+					button.classList.remove('success');
+					button.textContent = 'Copy';
+				}, 2000);
+			}
+			return succeed;
+		}
+	});
+</script>

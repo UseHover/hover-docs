@@ -21,8 +21,8 @@
 title: Hover Documentation
 
 # Build settings
-theme: elea
-remote_theme: usehover/elea
+# theme: elea
+# remote_theme: usehover/elea
 
 # Exclude from processing.
 # The following items will not be processed, by default.

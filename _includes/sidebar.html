@@ -1,0 +1,14 @@
+<aside class="menu">
+  {% for item in site.data.sidebar.menu %}
+    <h4>{{ item.title }}</h4>
+      <ul class="menu-section menu-list">
+        {% for entry in item.links %}
+          {% if entry.relative_url == true %}
+            <li><a href="{{ entry.url | relative_url }}">{{ entry.page }}</a></li>
+          {% else %}
+            <li><a href="{{ entry.url }}">{{ entry.page }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+  {% endfor %}
+</aside>
