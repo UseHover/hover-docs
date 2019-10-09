@@ -1,8 +1,52 @@
 menu:
-  - title: Introduction
-    links:
-      - page: Quick Start
+  - links:
+      - page: Quick start
         url: /
-        relative_url: true
-      - page: Live demo
-        url: https://github.com/usehover
+  - links:
+      - page: Create actions
+        url: /actions
+
+      - page: Install
+        url: /installation
+
+      - page: Run a USSD session
+        url: /ussd
+
+      - page: Parse responses
+        url: /parsing
+        
+  - links:
+      - page: Dual SIM
+        url: dual-sim
+        
+      - page: Webhooks
+        url: /webhooks
+        
+      - page: Customization
+        url: /customization
+        
+      - page: Permissions
+        url: /permissions
+        
+      - page: Hover tester
+        url: /hover-tester
+        
+      - page: Releases
+        url: /releases
+        
+  - links:
+      - page: Blog
+        url: https://medium.com/use-hover
+        external_link: true
+
+      - page: Github
+        url: https://github.com/UseHover
+        external_link: true
+
+      - page: Javadocs
+        url: http://maven.usehover.com/releases/com/hover/android-sdk/1.3.2/android-sdk-1.3.2-javadoc.jar
+        external_link: true
+        
+      - page: FAQs
+        url: https://intercom.help/usehover/
+        external_link: true
