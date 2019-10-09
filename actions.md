@@ -1,12 +1,13 @@
 ---
 layout: page
+permalink: /actions
 ---
 
 # Actions
 
 Hover’s SDK uses _actions_ you create to navigate menus on user devices. Typically each action represents a path through USSD menus. Once you create an action you can call it from your application code by passing its `action_id` to the Hover SDK.
 
-Actions can be updated anytime from within your Hover dashboard so that you do not have to update your whole app when a USSD service changes. To create actions sign in to your Hover account then go to <% if current\_user.present? && !current\_user.view? %><%= link\_to "create an action", new\_organization\_custom\_action\_path(current\_user.organization), target: :\_blank %><% else %><%= link\_to "create an action", organizations\_path, target: :\_blank %><% end %>.
+Actions can be updated anytime from within your Hover dashboard so that you do not have to update your whole app when a USSD service changes. To create actions sign in to your Hover account then go to the actions tab and click on `+ New Action`.
 
 ###### Actions consist of
 
@@ -15,7 +16,9 @@ Actions can be updated anytime from within your Hover dashboard so that you do n
 -   **Root code**, the shortcode used to dial the USSD service.
 -   The USSD menu **steps**. See below.
 
-See our <%= link\_to "blog post", "https://medium.com/use-hover/45aa9dd9dfa", target: :\_blank %> for more on converting USSD menus into actions.
+<div class="call-out call-out-info">
+    <p>See our <a target="_blank" href="https://medium.com/use-hover/45aa9dd9dfa">blog post</a> for more on converting USSD menus into actions.</p>
+</div>
 
 #### Creating an Action
 
@@ -44,7 +47,15 @@ Finally enter the **steps** for your action. Each step corresponds to a selectio
     PIN steps enter the user's PIN during the session. When running an action that contains a PIN step, Hover's SDK will display a secure prompt to the user before starting the session. The PIN is encrypted and temporarily stored using the Android Keystore, entered into the session at the appropriate time and then deleted. Note: The PIN **never** leaves the device.
     
 
-<%= render "pages/docs/image\_with\_caption", image: "docs/sdk-pin.png", title: "PIN Entry", text: "For actions that include a 'pin' step, Hover's SDK displays this pin entry screen at the start of the session. The PIN is encrypted and temporarily stored, then inserted into the USSD session at the appropriate time and then deleted. The pin never leaves the user's device. The background color and text color are #{link\_to %Q\[customizable\], page\_path("docs/customization")}." %>
+<div class="image-with-caption columns is-variable is-5">
+    <div class="image column is-narrow">
+        <img src="/assets/images/sdk-pin.png">
+    </div>
+    <div class="caption column">
+        <h4>PIN Entry</h4>
+        <p>For actions that include a 'pin' step, Hover's SDK displays this pin entry screen at the start of the session. The PIN is encrypted and temporarily stored, then inserted into the USSD session at the appropriate time and then deleted. The pin never leaves the user's device. The background color and text color are &lt;a href="/docs/customization"&gt;customizable&lt;/a&gt;.</p>
+    </div>
+</div>
 
 Sometimes simple actions like balance checks and account information requests have only a root code and no steps. In this case enter the root code and leave the steps blank.
 
@@ -58,4 +69,4 @@ You must get the `READ_PHONE_STATE` permission and call `Hover.initialize()` bef
 
 If you want to know if you can run a particular action on the user's SIM(s) you can call `Hover.isActionSimPresent(actionId, context);`. If you want to get a list of all your actions that will run on any of a user's present SIM cards you can call `Hover.getAllValidActions(context);` which will return a list of actions. There are also helpers for getting all the SIM cards present and for presenting a SIM choice interface to the user.
 
-[Next: Install](/docs/installation)
+[Next: Install](/installation)

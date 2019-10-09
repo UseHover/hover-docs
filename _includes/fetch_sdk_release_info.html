@@ -1,0 +1,37 @@
+<script>
+	function getCurrentVersion() {
+		$.get("https://maven.usehover.com/releases/com/hover/android-sdk/maven-metadata.xml",
+			function(xmlData) {
+				$(xmlData).find("release").each(function() {
+					setJavadocLink($(this).text());
+					setReleaseVersion($(this).text());
+				});
+				$(xmlData).find("lastUpdated").each(function() {
+					setReleaseDate(getHumanDate($(this).text()));
+				});
+			}
+		);
+	}
+
+	function setJavadocLink(version) {
+		$(".javadoc-link").attr("href", "http://maven.usehover.com/releases/com/hover/android-sdk/" + version + "/android-sdk-" + version + "-javadoc.jar");
+	}
+
+	function setReleaseVersion(version) {
+		$(".version-number").text(version);
+	}
+
+	function setReleaseDate(date) {
+		$(".version-date").text(date);
+	}
+
+	function getHumanDate(mavenDate) {
+		var date = new Date(mavenDate.substring(0, 4), mavenDate.substring(4, 6) - 1, mavenDate.substring(6, 8));
+		var options = { year: 'numeric', month: 'short', day: 'numeric' };
+		return new Intl.DateTimeFormat('en-US', options).format(date);
+	}
+
+	$(document).ready(function() {
+		 getCurrentVersion();
+	});
+</script>

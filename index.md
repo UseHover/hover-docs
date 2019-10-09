@@ -42,24 +42,12 @@ Steps can be one of three types
 -   **Variables** for entries that change at runtime, such as amount to be sent.
 -   **PIN prompt** to display a PIN entry for the user.
 
-### 2. Install the SDK
+#### 2. Install the SDK
 
-As of May 21, 2019 the current version of the Hover SDK is `1.1.0`.
-
-> If you have issues with your app building and you are using Android X dependencies then we have an SDK variant for that: `1.1.0-androidx`.
+{% include current_version.html %}
 
 Add Hover to your app-level build.gradle dependencies:
-
-```gradle
-repositories {
-    mavenCentral()
-    maven { url 'http://maven.usehover.com/releases' }
-}
-
-dependencies {
-    implementation('com.hover:android-sdk:1.1.0') { transitive = true; }
-}
-```
+{% include gradle_dependencies.html %}
 
 Then include your API token as application level metadata in your AndroidManifest.xml:
 
@@ -129,4 +117,4 @@ protected void onActivityResult (int requestCode, int resultCode, Intent data) {
 
 ### 4. (Optional) Parse the Result
 
-Hover provides a number of helpers for parsing the content and result of a USSD session, or you can do it yourself. See [parsing](https://www.usehover.com/docs/parsing#parsing) for more.
+Hover provides a number of helpers for parsing the content and result of a USSD session, or you can do it yourself. See [parsing](/parsing) for more.

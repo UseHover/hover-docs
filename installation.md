@@ -1,10 +1,11 @@
 ---
 layout: page
+permalink: /installation
 ---
 
 # Installation
 
-If you are new to Android or starting your app from scratch, we have an <%= link\_to %Q\[app on Github\], "https://github.com/UseHover/HoverStarter", target: :\_blank %> that can help you get going faster. Just follow the instructions in the README.
+If you are new to Android or starting your app from scratch, we have an [app on Github](https://github.com/UseHover/HoverStarter) that can help you get going faster. Just follow the instructions in the README.
 
 #### Create an App
 
@@ -20,11 +21,11 @@ You can add a webhook for each app to notify you any time a transaction is creat
 
 #### Install the SDK
 
-<%= render "pages/docs/current\_version" %>
+{% include current_version.html %}
 
 To include the SDK in your app, add Hover to your app-level build.gradle dependencies:
 
-<%= render "pages/snippets/gradle\_dependencies" %>
+{% include gradle_dependencies.html %}
 
 ###### Build Notes:
 
@@ -48,4 +49,4 @@ First have your app initialize the Hover SDK by calling `Hover.initialize()`. Th
 
 This call downloads your configuration information from the Hover server. If the `READ_PHONE_STATE` permission has been granted it also reads the SIM cards the user has present and listens for changes to them.
 
-[Next: Run a USSD session](/docs/ussd)
+[Next: Run a USSD session](/ussd)

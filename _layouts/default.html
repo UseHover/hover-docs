@@ -3,6 +3,10 @@
   <head>
     <title>{{ site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
   </head>
   <body class="docs">
     <div class="is-family-secondary is-dark">
@@ -23,5 +27,6 @@
       {%- include footer.html -%}
     </div>
     {%- include code_copier.html -%}
+    {%- include fetch_sdk_release_info.html -%}
   </body>
 </html>
