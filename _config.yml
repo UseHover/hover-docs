@@ -43,3 +43,6 @@ title: Hover Documentation
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+include:
+  - actions.md
