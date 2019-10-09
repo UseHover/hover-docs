@@ -1,0 +1,17 @@
+<figure>
+<pre><code class="java" data-lang="java">try {
+	Hover.requestActionChoice(new String[] {"aaaa1111", "bbbb2222"}, new ActionHelper.ActionChoiceListener() {
+		@Override 
+		public void onActionChosen(String actionID) {
+			Intent i = new HoverParameters.Builder(this).request(actionID)
+				.buildIntent();
+			startActivityForResult(i, 0);
+		}
+
+		@Override 
+		public void onCanceled() { 
+			Toast.makeText(activity, "You must choose a SIM card").show();
+		}
+	}, activity);
+} catch(HoverConfigException e) {}</code></pre>
+</figure>

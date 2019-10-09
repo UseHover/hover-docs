@@ -1,0 +1,11 @@
+<figure>
+	<pre><code class="java" data-lang="java">@Override
+protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+	if (requestCode == 0 &amp;&amp; resultCode == Activity.RESULT_OK) {
+		String[] sessionTextArr = data.getStringArrayExtra("ussd_messages");
+		String uuid = data.getStringExtra("uuid");
+	} else if (requestCode == 0 &amp;&amp; resultCode == Activity.RESULT_CANCELED) {
+		Toast.makeText(this, "Error: " + data.getStringExtra("error"), Toast.LENGTH_LONG).show();
+	}
+}</code></pre>
+</figure>

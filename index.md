@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
 #### Get Permission
 
-Before running a USSD session you must get the `READ_PHONE_STATE`, `BIND_ACCESSIBILITY_SERVICE`, and `SYSTEM_ALERT_WINDOW` permissions. Hover provides a helper Activity to help you get these permissions, but you can also do it yourself. If you start an action without these permissions Hover will automatically use its helper to get them from the user. Learn more at [permissions](https://www.usehover.com/docs/permissions).
+Before running a USSD session you must get the `READ_PHONE_STATE`, `BIND_ACCESSIBILITY_SERVICE`, and `SYSTEM_ALERT_WINDOW` permissions. Hover provides a helper Activity to help you get these permissions, but you can also do it yourself. If you start an action without these permissions Hover will automatically use its helper to get them from the user. Learn more at [permissions](/permissions).
 
 #### Run an Action
 
@@ -97,7 +97,7 @@ Intent i = new HoverParameters.Builder(this)
 startActivityForResult(i, 0);
 ```
 
-In production, you'll often want to check whether the user has the correct SIM card before calling an action. The Hover SDK provides helper methods for this, see [using actions](https://www.usehover.com/docs/actions#using-actions) for details.
+In production, you'll often want to check whether the user has the correct SIM card before calling an action. The Hover SDK provides helper methods for this, see [using actions](/actions#using-actions) for details.
 
 #### Get information about the session
 

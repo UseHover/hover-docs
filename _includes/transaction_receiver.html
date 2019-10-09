@@ -1,0 +1,18 @@
+<figure>
+	<pre><code class="java" data-lang="java">public class TransactionReceiver extends BroadcastReceiver {
+	public TransactionReceiver() { }
+
+	@Override
+	public void onReceive(Context context, Intent intent) {
+		String uuid = intent.getStringExtra("uuid");
+		String confirmationCode, balance;
+		if (intent.hasExtra("transaction_extras")) {
+			HashMap&lt;String, String&gt; t_extras = (HashMap&lt;String, String&gt;) intent.getSerializableExtra("transaction_extras");
+			if (t_extras.containsKey("confirmCode"))
+				confirmationCode = t_extras.get("confirmCode");
+			if (t_extras.containsKey("balance"))
+				balance = t_extras.get("balance");
+		}
+	}
+}</code></pre>
+</figure>

@@ -1,12 +1,13 @@
 ---
 layout: page
+permalink: /customization
 ---
 
 # Customization
 
 #### Customize the User Interface
 
-When running a USSD session you can do some simple customizations to the confirm, PIN, processing and completion screens. Simply create a new style in your styles.xml file and define \`colorPrimary\`, \`colorAccent\`, and \`colorPrimaryDark\`. You can try defining other attributes as well, but we have not yet tested or made it easy to tell what will affect what. When making your call to HoverParameters.Builder() simply call the following method:
+When running a USSD session you can do some simple customizations to the confirm, PIN, processing and completion screens. Simply create a new style in your styles.xml file and define `colorPrimary`, `colorAccent`, and `colorPrimaryDark`. You can try defining other attributes as well, but we have not yet tested or made it easy to tell what will affect what. When making your call to HoverParameters.Builder() simply call the following method:
 
     new HoverParameters.Builder(this).request("action_id").style(R.style.YOUR_STYLE);
     
@@ -24,4 +25,4 @@ If you wish to change the text that appears when a user goes to the Accessibilit
 
 You can translate the strings that are part of Hover's UI components. The list of string resources to translate are in the root folder of the Hover SDK's aar packaging called `public.txt` you can find the current english value of those strings in `/res/values/values.xml`
 
-[Next: Hover Tester](/docs/hover-tester)
+[Next: Hover Tester](/hover-tester)

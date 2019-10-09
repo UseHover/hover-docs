@@ -1,5 +1,6 @@
 ---
 layout: page
+permalink: /webhooks
 ---
 
 # Webhooks
@@ -93,4 +94,4 @@ The following is an example transaction payload:
     }
     
 
-[Next: Customization](/docs/customization)
+[Next: Customization](/customization)
