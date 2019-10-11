@@ -13,17 +13,13 @@ Our Android SDK can run virtually any USSD interaction on any mobile operator gl
 -   Target Android API level 18 or higher.
 -   A USSD service you wish to integrate.
 -   A SIM card that can dial the USSD service.
-- [A Hover account](https://www.usehover.com/signup)
+-   [A Hover account](https://www.usehover.com/u/sign_up)
 
-<div class="call-out call-out-info">
-    <p>
-        If you are new to Android or starting your app from scratch, we have a pre-configured <a target="_blank" href="https://github.com/UseHover/HoverStarter">app on Github</a> that can help you more quickly test and customize Hover. Follow the instructions in the README to get started.
-    </p>
-</div>
+If you are new to Android or starting your app from scratch, we have a pre-configured <a target="_blank" href="https://github.com/UseHover/HoverStarter">app on Github</a> that can help you more quickly test and customize Hover. Follow the instructions in the README to get started.
 
 #### 1\. Create an Action
 
-Actions instruct the Hover SDK how to integrate with a USSD service. To create actions sign in to your Hover account then go to create an action.
+Actions instruct the Hover SDK how to integrate with a USSD service. To create actions sign in to your Hover account then go to the actions tab and click on `+ New Action`
 
 Actions consist of
 
@@ -42,79 +38,58 @@ Steps can be one of three types
 -   **Variables** for entries that change at runtime, such as amount to be sent.
 -   **PIN prompt** to display a PIN entry for the user.
 
-#### 2. Install the SDK
+#### 2\. Install the SDK
 
 {% include current_version.html %}
 
-Add Hover to your app-level build.gradle dependencies:
+###### Create an App
+
+Create an API key for your app by clicking “New app” on the left side of your dashboard. Enter the app name, package name, and an optional [webhook url](/webhooks). The package name MUST match the applicationId found in your app-level build.gradle file.
+
+After you click save the new API token can be found under your app’s package name in the left-side of your dashboard:
+
+![](/assets/images/api-key-location.png)
+
+###### Add the Hover repo to your root build.gradle repositories:
+
+{% include gradle_repos.html %}
+
+###### Add the SDK to your app-level build.gradle dependencies:
+
 {% include gradle_dependencies.html %}
 
-Then include your API token as application level metadata in your AndroidManifest.xml:
+###### Include your API token in your AndroidManifest.xml:
 
-```xml
-<application>
-    ...
-    <meta-data
-        android:name="com.hover.ApiKey"  
-        android:value="<YOUR_API_TOKEN>"/>
-</application>
-```
+{% include api_token.html %}
 
-Finally, have your app initialize the Hover SDK by calling `Hover.initialize()`. This needs to be done once, ideally in your main launch activity. Please do not do this in your Application class.
+###### Initialize
 
-```java
-import com.hover.sdk.api.Hover;
-...
+Your actions are downloaded and the SDK is initialized by calling `Hover.initialize()`. This needs to be done once, ideally in your main launch activity. Please do not do this in your Application class.
 
-public class MainActivity extends AppCompatActivity {
-...
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ...
+{% include initialize.html %}
 
-        Hover.initialize(this);
-    }
-        ...
+#### 3\. Run your Action
 
-}
-```
+###### Make the USSD request
 
-### 3. Start a USSD Session
+When the user clicks a button or takes another action, start the USSD session. Specify the `action_id`, and names and values for any variables.
 
-#### Get Permission
+{% include action.html %}
 
-Before running a USSD session you must get the `READ_PHONE_STATE`, `BIND_ACCESSIBILITY_SERVICE`, and `SYSTEM_ALERT_WINDOW` permissions. Hover provides a helper Activity to help you get these permissions, but you can also do it yourself. If you start an action without these permissions Hover will automatically use its helper to get them from the user. Learn more at [permissions](/permissions).
+The Hover SDK will only run an action on a SIM card of the network(s) it is configured for. We provide helper methods for checking a user’s SIMs; see [using actions](/actions) for details.
 
-#### Run an Action
-
-Create a request and launch the intent, specifying an `action_id`. The names and values for any variable action steps should be added as extras:
-
-```java
-Intent i = new HoverParameters.Builder(this)
-    .request("action_id")
-    .extra(“action_step_variable_name”, variable_value)
-    .buildIntent();
-startActivityForResult(i, 0);
-```
-
-In production, you'll often want to check whether the user has the correct SIM card before calling an action. The Hover SDK provides helper methods for this, see [using actions](/actions#using-actions) for details.
-
-#### Get information about the session
+###### Get information about the session
 
 Implement `onActivityResult()` to get the content of the session. If the `resultCode` is `RESULT_OK` then as far as the SDK can tell the request was accepted and is being processed by the USSD operator. If the result code is `RESULT_CANCELED` then something went wrong and you should not expect the request to succeed. In this case the data intent returned will have a String Extra called `error` which will contain the error message.
 
-```java
-@Override
-protected void onActivityResult (int requestCode, int resultCode, Intent data) {
-    if (requestCode == 0 && resultCode == Activity.RESULT_OK) {
-        String[] sessionTextArr = data.getStringArrayExtra("ussd_messages");
-        String uuid = data.getStringExtra("uuid");
-    } else if (requestCode == 0 && resultCode == Activity.RESULT_CANCELED) {
-        Toast.makeText(this, "Error: " + data.getStringExtra("error"), Toast.LENGTH_LONG).show();
-    }
-}
-```
+{% include action_result.html %}
 
-### 4. (Optional) Parse the Result
+#### 4\. (Optional) Parse the Result
 
-Hover provides a number of helpers for parsing the content and result of a USSD session, or you can do it yourself. See [parsing](/parsing) for more.
+To categorize transactions as “succeeded” or “failed”, you can parse the final USSD or SMS message using a regular expression. Hover provides a number of helpers for parsing the content and result of a USSD session, or you can do it yourself. To use Hover’s parsers add a parser to an action, set the status you want assigned to this particular type of result (e.g. status: “failed”, category: “wrong PIN”) and write the regular expression for the message as it appears in the final SMS or USSD message.
+
+![](/assets/images/parser-form-example.png)
+
+See [parsing](/parsing) for more.
+
+[Next: Create Actions](/actions)
