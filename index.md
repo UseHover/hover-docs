@@ -15,7 +15,10 @@ Our Android SDK can run virtually any USSD interaction on any mobile operator gl
 -   A SIM card that can dial the USSD service.
 -   [A Hover account](https://www.usehover.com/u/sign_up)
 
-If you are new to Android or starting your app from scratch, we have a pre-configured <a target="_blank" href="https://github.com/UseHover/HoverStarter">app on Github</a> that can help you more quickly test and customize Hover. Follow the instructions in the README to get started.
+    <div class="call-out call-out-info">
+	  <p>If you are new to Android or starting your app from scratch, we have a pre-configured <a target="_blank" href="https://github.com/UseHover/HoverStarter">app on Github</a> that can help you more quickly test and customize Hover. Follow the instructions in the README to get started.</p>
+    </div>
+
 
 #### 1\. Create an Action
 
