@@ -5,23 +5,42 @@ permalink: /parsing
 
 # Parsing
 
-Hover's SDK includes an easy way to help you parse out messages from USSD sessions and SMS responses. While the text of USSD sessions is always returned when you use Hover's SDK, and you can use Android APIs to get SMS responses, we want to make it as easy as possible for you to get what you need.
+With Hover, you can write regular expressions to parse messages from USSD sessions and SMS responses. Our parsers allow you to:
+- Automatically assign a transaction status to understand transaction success rates and reasons for transaction failures. Hover's SDK captures all USSD session and SMS messages occuring up to five minutes following the end of the transaction. These can be accessed from within your dashboard. 
 
-After you [create an action](/actions) in your Hover dashboard you have the option of adding parsers. When the Hover SDK recieves a USSD or SMS message which matches a parser, then the parser will set status related fields on the most recent, still pending transaction which belongs to the same action as the parser. A parser matches when it's regular expression successfully matches the message and, if it is for SMS, its SMS sender matches.
+- Parse out specific information from the USSD message or SMS. This might include the amount of a transaction, the user’s balance, or the transaction confirmation number. Capturing this type of information enables features like persistent in-app transaction histories and low balance notifications.
+
+You can add parsers to any [action](/actions) within your Hover dashboard. When the Hover SDK receives a USSD or SMS message that matches a parser, the parser will set status fields on the associated transaction. A parser “matches” when its regular expression matches the message's text. If you are parsing an SMS, the parser's sender must be an exact match (case sensitive) to the SMS sender. A parser "misses" when the sender matches, but the regular expression does not match the text. 
+
+If you’d prefer to use a third party tool or build your own parser, Hover's SDK always returns the text of USSD sessions. You can also use Android APIs to get SMS responses.
 
 #### Creating a Parser
 
 ###### Choosing a status and category
 
-The status that a parser sets must be either `failed`, `pending`, or `succeeded`. Category is used alongside status to tell you quickly the reason for the state of a transaction, and it can also be used in Hover's dashboard and exports to categorize transactions. It must be unique among all parsers for a single action.
+The status that a parser sets must be either `succeeded`, `failed`, or `pending`. You may also set a custom category that briefly describes the reason for the state of a transaction. Categories allow you to filter and group transactions in your dashboard and data exports. Each must be unique among all parsers for a single action.
 
-You should generally not need to set a `pending` status, since this is the default. Only use this if you want to parse something out of a USSD message and then wait for another response. `Failed` should be used to watch for failure messages such as too low a balance to complete a transaction or an invalid recipient. You might then set status reason to "low-balance" and "invalid-recipient" respectively. `Succeeded` should be used to process confirmation messages. In this case the status reason might just be "confirmed". Since status reason must be unique across parsers within an action, if you have multiple confirmation possibilities, for example: multiple languages such as English and Swahili, then you could have "confirmed-en" and "confirmed-sw" to mark the different confirmation matches.
+You don't need to set a `pending` status, since this is the default. Only use this status if you want to parse something out of a USSD message and then wait for another response. 
+
+`Failed` should be used to watch for failure messages. For instance, if you want to know how many transactions fail because of insufficient balance, you can create a parser with `Failed` as the status and "insufficient-balance" as the category.
+
+`Succeeded` should be used to process confirmation messages. In this case the category might just be "confirmed". Be sure to account for multiple confirmation possibilities, such as multiple languages. For example, to parse confirmations in Swahili and English, you might create two parsers: one for "confirmed-en" and one for "confirmed-sw". 
 
 ###### Writing the regex
 
 See our [blog post](https://medium.com/use-hover/3e0cf53fa114) for more on writing regular expressions for parsers.
 
-Your regex should be as specific as possible to prevent matching unrelated messages. However, you should also account for variation that can occur, such as ads at the end of the message. We recommend ending your regex with `.*` and replacing whitespace with `[\s]*`. The SDK uses named-groups in the regex to parse out variables and return them to you. So if you want to run a balance check and get the balance parsed out of the message, the balance in the regex might look like `(?<balance>[0-9\,\.]+)`. Any named groups parsed out of the confirmation will show in the transaction details for that transaction in the Hover Dashboard. See [below](/parsing) for how to get this information in-app.
+General rules for writing the regex:
+
+- Your regex should be as specific as possible to prevent matching unrelated messages. 
+- We recommend ending your regex with `.*` and replacing whitespace with `[\s]*`. This accounts for variation that often occurs in confirmation messages over time, such as ads at the end of the message. 
+- **Use named-groups**. The SDK uses named-groups in the regex to parse out variables and return them to you. For example, if you want to parse the numerical balance out of a Check Balance message, the group in the regex might look like `(?<balance>[0-9\,\.]+)`. Any named groups parsed out of the confirmation will show in the transaction details for that transaction in the Hover Dashboard. See [below](/parsing) for how to get this information in-app.
+- Check your regex. We recommend [RegexPlanet](/https://www.regexplanet.com/advanced/java/index.html) (note: case-insensitive should be ON).
+
+Here's a fictional example of a Check Balance confirmation SMS and a regular expression with named-groups:
+
+**5555SIMPLYDIAL5555 Imethibitishwa Salio lako ni Tsh5,555.00 tarehe 24/10/19, 09:10 PM. Kweli, Pesa ni M-Pesa! Lipia bidhaa mitandaoni kwa M-PESA MASTERCARD.**
+`(?<confirmCode>[\w]+).*Imethibitishwa.*salio.*Tshs*\s*(?<balance>[0-9\,\.]+).*`
 
 ###### Matching SMS
 
@@ -29,7 +48,7 @@ If you choose a message type of "SMS" and specify an SMS sender, then the SDK wi
 
 ###### User Message
 
-This is an optional field that you can use to associate a user friendly message when this parser matches. It
+This is an optional field that you can use to write a user friendly message when this parser matches. It will display to the end-user on the final confirmation screen.
 
 #### Implement the Parsed Message Receiver In-App
 
