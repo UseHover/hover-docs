@@ -158,7 +158,13 @@ Long (depreciated)
 
 Same as updated\_timestamp
 
-`transaction_extras`
+`input_extras`
+
+Hashmap<String, String>
+
+A HashMap object of all the extras you passed in using `.extra(key, value)`
+
+`parsed_variables`
 
 Hashmap<String, String>
 
