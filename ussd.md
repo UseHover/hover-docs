@@ -51,6 +51,12 @@ String\[\]
 
 Text of each USSD response in order
 
+`input_extras`
+
+Hashmap
+
+The key/value extras that you provided when starting the action
+
 `request_timestamp`
 
 long
