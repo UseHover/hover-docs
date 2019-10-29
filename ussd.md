@@ -45,7 +45,7 @@ String
 
 The action name you provided for the action
 
-`ussd_messages`
+`session_messages`
 
 String\[\]
 
