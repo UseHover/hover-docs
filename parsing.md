@@ -40,6 +40,7 @@ General rules for writing the regex:
 Here's a fictional example of a Check Balance confirmation SMS and a regular expression with named-groups:
 
 **5555SIMPLYDIAL5555 Imethibitishwa Salio lako ni Tsh5,555.00 tarehe 24/10/19, 09:10 PM. Kweli, Pesa ni M-Pesa! Lipia bidhaa mitandaoni kwa M-PESA MASTERCARD.**
+
 `(?<confirmCode>[\w]+).*Imethibitishwa.*salio.*Tshs*\s*(?<balance>[0-9\,\.]+).*`
 
 ###### Matching SMS
