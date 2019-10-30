@@ -40,6 +40,7 @@ Steps can be one of three types
 -   **Numbers** for constant choices such as entering “1” to reach My Account.
 -   **Variables** for entries that change at runtime, such as amount to be sent.
 -   **PIN prompt** to display a PIN entry for the user.
+-   **Press OK** for menus where no choice or entry is made.
 
 #### 2\. Install the SDK
 

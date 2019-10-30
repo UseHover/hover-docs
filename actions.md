@@ -12,9 +12,11 @@ Actions can be updated anytime from within your Hover dashboard so that you do n
 ###### Actions consist of
 
 -   **Name** of your choice, for example "Send Money".
--   **Mobile networks**/SIM cards that can run the USSD service.
--   **Root code**, the shortcode used to dial the USSD service.
--   The USSD menu **steps**. See below.
+-   **Description** optional, for your internal use on the dashboard. Anything to help your team know what the action is for.
+-   **Mobile networks**/SIM cards that can run the service.
+-   **Type**: USSD, SIM Toolkit, USSD push, or variable longstring. See below.
+-   **Root code**, the shortcode used to start the session.
+-   The menu **steps**. See below.
 
 <div class="call-out call-out-info">
     <p>See our <a target="_blank" href="https://medium.com/use-hover/45aa9dd9dfa">blog post</a> for more on converting USSD menus into actions.</p>
@@ -22,17 +24,36 @@ Actions can be updated anytime from within your Hover dashboard so that you do n
 
 #### Creating an Action
 
-Log into your Hover account and choose “New Action” from the dashboard. Give the action a memorable name. We recommend using the operator name and the type of action for easy reference (eg Tigo Send Money). Then choose the country and mobile operator your action will work with. If you’d like to support the same USSD function across multiple networks, you will need to create a unique action for each operator (eg Tigo Check Balance, MTN Check Balance) if the USSD root code and steps are different.
+Log into your Hover account and choose “New Action” from the dashboard. Give the action a memorable name. We recommend using the operator name and the type of action for easy reference (eg Tigo Send Money). Then choose the country and mobile operator your action will work with. If you’d like to support the same function across multiple networks, you will need to create a unique action for each operator (eg Tigo Check Balance, MTN Check Balance) if the USSD root code and steps are different.
+
+Choose the **type** of menu that you are integrating. There are four types:
+
+1.  ###### USSD
+    
+    A standard USSD menu that is started by dialing a shortcode and then entering choices in the menus
+    
+2.  ###### SIM Toolkit
+    
+    A SIM Toolkit (STK) based menu. Primarily for Safaricom MPESA in Kenya, but there are others.
+    
+3.  ###### USSD or STK push
+    
+    A session that is not started by dialing a shortcode or launching the STK but is instead started by an API call. Most commonly used to enter a PIN to confirm, but there can be as many steps as needed, just like a regular USSD action.
+    
+4.  ###### Variable Longstring
+
+    A USSD session that does not have menus for some choices that need to be made. For example, an airtime top-up using a scratch card might be done by dialing \*123#voucherCode\* where voucherCode is the number from the scratch card.
+
 
 In **root code** enter the string a user would dial to initiate the session. These usually look like \*123# or \*123\*01#.
 
-Finally enter the **steps** for your action. Each step corresponds to a selection from a USSD menu. There are three types of steps:
+Finally enter the **steps** for your action. Each step corresponds to a selection from a menu:
 
 1.  ###### Number
     
     Constant choices such as entering “1” to reach My Account.
     
-    Corresponds to the user entering a number from a list of options and pressing “Send”. The ‘Input’ is the number Hover’s SDK will enter on behalf of the user. If there is a confirmation dialog without a number choice, create a number step with the value of a single dash `-`. This is ONLY required for dialogs in-between other steps, not at the end of the session.
+    Corresponds to the user entering a number from a list of options and pressing “Send”. The ‘Input’ is the number Hover’s SDK will enter on behalf of the user. For SIM Toolkit actions, the number is indexed from 0, meaning the first option is 0, the second is 1 and so forth. Additionally STK number steps have an additional field "expected text". You must enter the exact (case-insensitive) text of the menu option. This allows Hover to counteract some of the bugginess of the Android STK and error correct to find the right choice.
     
 2.  ###### Variable
     
@@ -45,6 +66,12 @@ Finally enter the **steps** for your action. Each step corresponds to a selectio
     Displays a PIN entry for the user.
     
     PIN steps enter the user's PIN during the session. When running an action that contains a PIN step, Hover's SDK will display a secure prompt to the user before starting the session. The PIN is encrypted and temporarily stored using the Android Keystore, entered into the session at the appropriate time and then deleted. Note: The PIN **never** leaves the device.
+    
+4.  ###### Press OK (no choice)
+    
+    Press the confirm button - it usually says OK or Send, but this will press it regardless of the actual text.
+    
+    This is used for dialogs that don't have any sort of entry or choices but are just confirmation. It is rare that you will actually need to use this: in most cases Hover confirms automatically after an entry is made or at the end of the session. This is only for cases where a confirmation needs to be made in the middle of the session.
     
 
 <div class="image-with-caption columns is-variable is-5">
