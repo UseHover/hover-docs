@@ -31,7 +31,6 @@ You don't need to set a `pending` status, since this is the default. Only use th
 See our [blog post](https://medium.com/use-hover/3e0cf53fa114) for more on writing regular expressions for parsers.
 
 General rules for writing the regex:
-
 - Your regex should be as specific as possible to prevent matching unrelated messages. 
 - We recommend ending your regex with `.*` and replacing whitespace with `[\s]*`. This accounts for variation that often occurs in confirmation messages over time, such as ads at the end of the message. 
 - **Use named-groups**. The SDK uses named-groups in the regex to parse out variables and return them to you. For example, if you want to parse the numerical balance out of a Check Balance message, the group in the regex might look like `(?<balance>[0-9\,\.]+)`. Any named groups parsed out of the confirmation will show in the transaction details for that transaction in the Hover Dashboard. See [below](/parsing) for how to get this information in-app.
@@ -63,118 +62,25 @@ Create the Receiver itself and use the intent as you need:
 
 The intent received will contain the meta data about the transaction, such as the action, transaction uuid, and original message. The named-groups that have been parsed out are in a serialized HashMap extra called `transaction_extras`. It is recomended that you check that an extra is present first with `extras.containsKey()`
 
-Extra
-
-Type
-
-Description
-
-`uuid`
-
-String
-
-Unique Identifier for the transaction
-
-`action_id`
-
-String
-
-The action id from our supported operators page
-
-`response_message`
-
-String
-
-Full message used for parsing
-
-`status`
-
-String
-
-"pending", "failed", or "succeeded"
-
-`status_meaning`
-
-String
-
-What you specified for the latest matched parser or one of the default failed cases above
-
-`status_description`
-
-String
-
-Message you specified for the latest matched parser
-
-`matched_parser_id`
-
-Int
-
-Unique identifier for the parser which matched, causing this transaction to update
-
-`message_type`
-
-String
-
-“ussd” or “sms”
-
-`message_sender`
-
-String
-
-If SMS, the sender id from the parser form, null if USSD
-
-`regex`
-
-String
-
-Regular expression you specified in the parser form
-
-`sim_hni`
-
-String
-
-The Home Network Identifier (MCC + MNC) of the SIM used
-
-`environment`
-
-Int
-
-0 for normal, 1 for debug, 2 for test
-
-`request_timestamp`
-
-Long
-
-Time user initiated transaction (Unix time)
-
-`update_timestamp`
-
-Long
-
-Time at which the transaction last updated (SMS arrival or USSD finished)
-
-`response_timestamp`
-
-Long (depreciated)
-
-Same as updated\_timestamp
-
-`input_extras`
-
-Hashmap<String, String>
-
-A HashMap object of all the extras you passed in using `.extra(key, value)`
-
-`parsed_variables`
-
-Hashmap<String, String>
-
-A HashMap object of all named groups parsed out of the response message based on your regex
-
-`session_messages`
-
-String\[ \]
-
-Array of all USSD session messages in order encountered
+| Extra               | Type     | Description     |
+|---                  |---       |---              |
+| `uuid`              | String   | Unique Identifier for the transaction |
+| `action_id`         | String   | The action id from out supported operators page |
+| `response_message`  | String   | Full message used for parsing |
+| `status`            | String   | "pending", "failed" or "succeeded" |
+| `status_meaning`    | String   | What you specified for the latest matched parser or one of the default failed cases above |
+| `status_description`| String   | Message you specified for the latest matched parser |
+| `matched_parser_id` | Int      | Unique identifier for the parser which matched, causing this transaction to update |
+| `message_type`      | String   | "ussd" or "sms" |
+| `message_sender`    | String   | If SMS, the sender id from the parser form, null if USSD |
+| `regex`             | String   | Regular expression you specified in the parser form |
+| `sim_hni`           | String   | The Home Network Identifier (MCC + MNC) of the SIM used |
+| `environment`       | Int      | 0 for normal, 1 for debug, 2 for test |
+| `request_timestamp` | Long     | Time user initiated transaction (Unix time) |
+| `update_timestamp`  | Long     | Time at which the transaction last updated (SMS arrival or USSD finished) |
+| `response_timestamp`| Long (depreciated) | Same as updated\_timestamp |
+| `input_extras`      | Hashmap<String, String> | A HashMap object of all the extras you passed in using `.extra(key, value)` |
+| `parsed_variables`  | Hashmap<String, String> | A HashMap object of all named groups parsed out of the response message based on your regex |
+| `session_messages`  | String\[ \] | Array of all USSD session messages in order encountered
 
 [Next: Permissions](/permissions)

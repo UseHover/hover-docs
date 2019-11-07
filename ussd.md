@@ -21,53 +21,15 @@ If the `resultCode` is `RESULT_OK` then the USSD session was successfully initia
 
 The data intent returned in `onActivityResult()` contains the following information if the result is `RESULT_OK`
 
-Extra name
-
-Type
-
-Description
-
-`uuid`
-
-String
-
-Unique Identifier for the transaction assigned by Hover. Use this to track the transaction on Hover's dashboard and export tools as well as on the client if you use Hover's parsing tools
-
-`action_id`
-
-String
-
-The action id you provided to start the session
-
-`action_name`
-
-String
-
-The action name you provided for the action
-
-`session_messages`
-
-String\[\]
-
-Text of each USSD response in order
-
-`input_extras`
-
-Hashmap
-
-The key/value extras that you provided when starting the action
-
-`request_timestamp`
-
-long
-
-Time user initiated transaction (Unix time)
-
-`error`
-
-String
-
-Any error that was detected. If the result is `RESULT_OK` this can still contain an error if the session ended prematurely. Otherwise this is the reason(s) that the request result is `RESULT_CANCELED`
+|Extra name            | Type       | Description  |
+|---                   |---         |---           |
+| `uuid`               | String     |  Unique Identifier for the transaction assigned by Hover. Use this to track the transaction on Hover's dashboard and export tools as well as on the client if you use Hover's parsing tools  |
+| `action_id`          | String     | The action id you provided to start the session  |
+| `action_name`        | String     |  The action name you provided for the action  |
+| `session_messages`   | String\[\] | Text of each USSD response in order  |
+| `input_extras`       | Hashmap    | The key/value extras that you provided when starting the action |
+| `request_timestamp`  | long       | Time user initiated transaction (Unix time)  |
+| `error`              | String     | Any error that was detected. If the result is `RESULT_OK` this can still contain an error if the session ended prematurely, Otherwise this is the reasons(s) that the request result is `RESULT_CANCELED`  |
 
 You can parse the text from the USSD session in your own code, or create [parsers](/parsing) through Hover. Hover parsers make it easy to extract and access information such as confirmation details and USSD session status within your application code.
 
