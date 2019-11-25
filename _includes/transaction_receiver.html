@@ -6,12 +6,12 @@
 	public void onReceive(Context context, Intent intent) {
 		String uuid = intent.getStringExtra("uuid");
 		String confirmationCode, balance;
-		if (intent.hasExtra("transaction_extras")) {
-			HashMap&lt;String, String&gt; t_extras = (HashMap&lt;String, String&gt;) intent.getSerializableExtra("transaction_extras");
-			if (t_extras.containsKey("confirmCode"))
-				confirmationCode = t_extras.get("confirmCode");
-			if (t_extras.containsKey("balance"))
-				balance = t_extras.get("balance");
+		if (intent.hasExtra("parsed_variables")) {
+			HashMap&lt;String, String&gt; parsed_variables = (HashMap&lt;String, String&gt;) intent.getSerializableExtra("parsed_variables");
+			if (parsed_variables.containsKey("confirmCode"))
+				confirmationCode = parsed_variables.get("confirmCode");
+			if (parsed_variables.containsKey("balance"))
+				balance = parsed_variables.get("balance");
 		}
 	}
 }</code></pre>
