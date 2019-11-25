@@ -60,7 +60,7 @@ Create the Receiver itself and use the intent as you need:
 
 {% include transaction_receiver.html %}
 
-The intent received will contain the meta data about the transaction, such as the action, transaction uuid, and original message. The named-groups that have been parsed out are in a serialized HashMap extra called `transaction_extras`. It is recomended that you check that an extra is present first with `extras.containsKey()`
+The intent received will contain the meta data about the transaction, such as the action, transaction uuid, and original message. The named-groups that have been parsed out are in a serialized HashMap extra called `parsed_variables`. It is recomended that you check that an variable is present first with `parsed_variables.containsKey()`
 
 | Extra               | Type     | Description     |
 |---                  |---       |---              |
