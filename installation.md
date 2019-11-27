@@ -23,7 +23,11 @@ You can add a webhook for each app to notify you any time a transaction is creat
 
 {% include current_version.html %}
 
-To include the SDK in your app, add Hover to your app-level build.gradle dependencies:
+To include the SDK in your app, first add the Hover repo to your root build.gradle repositories:
+
+{% include gradle_repos.html %}
+
+ Second, add Hover to your app-level build.gradle dependencies:
 
 {% include gradle_dependencies.html %}
 
