@@ -44,7 +44,13 @@ Here's a fictional example of a Check Balance confirmation SMS and a regular exp
 
 ###### Matching SMS
 
-If you choose a message type of "SMS" and specify an SMS sender, then the SDK will watch for any SMS message from that sender and attempt to use the regular expression to match the message. If it matches, then the SMS will be assumed to be related to the most recent pending transaction for the parser's action. You can use this to match a mobile money confirmation from the operator, or you could use it to match a related SMS, for example an electricity token from the electricity provider after taking a Pay Bill action. This field is case-sensitive.
+If you choose a message type of "SMS" and specify an SMS sender, then the SDK will watch for any SMS message from that sender for up to twelve hours after the transaction occurs (since SMS can sometimes be delayed) and attempt to use the regular expression to match the message. If it matches, then the SMS will be assumed to be related to the most recent pending transaction for the parser's action. You can use this to match a mobile money confirmation from the operator, or you could use it to match a related SMS, for example an electricity token from the electricity provider after taking a Pay Bill action. The sender field is case-sensitive. 
+
+If an SMS arrives within fifteen minutes of a transaction that matches the sender but not the regex, or has a case-insensitive sender match then an "SMS miss" will be added to the transaction. This will show up in the details in the Hover dashboard as well as firing a local broadcast intent which you can listen for in your app. Start listening before starting the transaction:
+
+{% include sms_listener.html %}
+
+Don't forget to unregister it in `onDestroy` of your activity.
 
 ###### User Message
 
