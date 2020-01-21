@@ -17,6 +17,12 @@ By using `startActivityForResult()` you will get the content of the session once
 
 If the `resultCode` is `RESULT_OK` then the USSD session was successfully initiated. You can find out the details of the session and whether it successfully completed by inspecting the intent extras provided and parsing the text (see [below](#result)). If the result code is `RESULT_CANCELED` then something went wrong before starting the session. In this case the data intent returned will have a String Extra called `error` which will contain the error message.
 
+In some cases a transaction confirmation based on a [parser](/parsing) can come before `onActivityResult` is called. If you need to know about the pending transaction first then you can listen for the local broadcast intent fired when the pending transaction is first created. This should come before any confirmation and has all the same details about the transaction as onActivityResult.
+
+{% include pending_transaction_listener.html %}
+
+Don't forget to unregister your reciever when your activity is destroyed.
+
 #### Getting a Session Result
 
 The data intent returned in `onActivityResult()` contains the following information if the result is `RESULT_OK`
