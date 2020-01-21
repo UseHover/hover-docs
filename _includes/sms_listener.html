@@ -1,0 +1,16 @@
+<figure>
+	<pre><code class="java" data-lang="java">private void callHover() {
+		LocalBroadcastManager.getInstance(context).registerReceiver(smsReceiver, new IntentFilter("MY-PACKAGE-NAME.SMS_MISS"));
+        startActivityForResult(createHoverIntent(), 0);
+	}
+	private final BroadcastReceiver smsReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(final Context context, final Intent i) {
+			Log.i(TAG, "Recieved SMS miss broadcast");
+            Log.i(TAG, "message: " + i.getStringExtra("msg");
+            Log.i(TAG, "sender: " + i.getStringExtra("sender");
+            Log.i(TAG, "transaction_uuid: " + i.getStringExtra("transaction_uuid");
+            Log.i(TAG, "action_id: " + i.getStringExtra("action_id");
+		}
+	};</code></pre>
+</figure>
