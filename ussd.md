@@ -17,6 +17,12 @@ By using `startActivityForResult()` you will get the content of the session once
 
 If the `resultCode` is `RESULT_OK` then the USSD session was successfully initiated. You can find out the details of the session and whether it successfully completed by inspecting the intent extras provided and parsing the text (see [below](#result)). If the result code is `RESULT_CANCELED` then something went wrong before starting the session. In this case the data intent returned will have a String Extra called `error` which will contain the error message.
 
+In some cases a transaction confirmation based on a [parser](/parsing) can come before `onActivityResult` is called. If you need to know about the pending transaction first then you can listen for the local broadcast intent fired when the pending transaction is first created. This should come before any confirmation and has all the same details about the transaction as onActivityResult.
+
+{% include pending_transaction_listener.html %}
+
+Don't forget to unregister your reciever when your activity is destroyed.
+
 #### Getting a Session Result
 
 The data intent returned in `onActivityResult()` contains the following information if the result is `RESULT_OK`
@@ -44,5 +50,9 @@ If you do not have access to the SIM card or network you wish your users to use 
 #### Debug Environment
 
 If your USSD session does not seem to be running correctly and you want more visibility into what is happening you can activate the SDK debug environment by calling `.setEnvironment(HoverParameters.DEBUG_ENV)` on your `HoverParameters.Builder()`. This will prevent the Screen Blocker from displaying, allowing you to see the USSD session as it happens, and adding more logging information to the logcat. Do not interact with the session when you see it in this mode; if nothing happens you should recheck your action configuration. If it still doesn't work it is most likely a device specific issue, try with a different device and contact us so we can check the device and help you out. Please do not run debug mode in production: when users see the USSD messages flash across the screen it scares them, the blocking processing screen should always be in place.
+
+#### Advanced Usage
+
+In some cases you may need information from the USSD session before you can complete a transaction. For example you may want to get a recipients name so that the user can confirm that it is the correct recipient. To do this you currently need to create 2 separate actions. The first you will configure to run through the USSD steps until the menu that has the information you need. Make that the final step, then create a parser which pulls the details you need out of the message. Use the TRANSACTION_UPDATE broadcast to recieve this information and trigger showing it to the user. Once they have confirmed or otherwise acted based on the information you can then start a second action which you have configured to run the transaction through to completion. Please remember that in some cases your users are charged per USSD session and will not appreciate being charged twice.
 
 [Next: Parse responses](/parsing)

@@ -34,7 +34,7 @@ Choose the **type** of menu that you are integrating. There are four types:
     
 2.  ###### SIM Toolkit
     
-    A SIM Toolkit (STK) based menu. Primarily for Safaricom MPESA in Kenya, but there are others.
+    A SIM Toolkit (STK) based menu. Primarily for Safaricom MPESA in Kenya, but there are others. When using this option the root code is not used.
     
 3.  ###### USSD or STK push
     
@@ -42,7 +42,7 @@ Choose the **type** of menu that you are integrating. There are four types:
     
 4.  ###### Variable Longstring
 
-    A USSD session that does not have menus for some choices that need to be made. For example, an airtime top-up using a scratch card might be done by dialing \*123\*voucherCode# where voucherCode is the number from the scratch card.
+    A USSD session that does not have menus for some choices that need to be made. For example, an airtime top-up using a scratch card might be done by dialing \*123\*voucherCode# where voucherCode is the number from the scratch card. This is not recommended for general use since many networks prevent longstrings from working.
 
 
 In **root code** enter the string a user would dial to initiate the session. These usually look like \*123# or \*123\*01#.

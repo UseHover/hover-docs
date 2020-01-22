@@ -1,0 +1,13 @@
+<figure>
+	<pre><code class="java" data-lang="java">private void callHover() {
+		LocalBroadcastManager.getInstance(context).registerReceiver(pendingTransactionReceiver, new IntentFilter("PENDING_TRANSACTION_CREATED"));
+        startActivityForResult(createHoverIntent(), 0);
+	}
+	private final BroadcastReceiver pendingTransactionReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(final Context context, final Intent i) {
+			Log.i(TAG, "Recieved pending transaction created broadcast");
+            Log.i(TAG, "uuid: " + i.getStringExtra("uuid");
+		}
+	};</code></pre>
+</figure>
