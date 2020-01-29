@@ -1,0 +1,25 @@
+Each step corresponds to a selection from a menu:
+
+###### Number
+    
+Constant choices such as entering “1” to reach My Account.
+    
+Corresponds to the user entering a number from a list of options and pressing “Send”. The ‘Input’ is the number Hover’s SDK will enter on behalf of the user. For SIM Toolkit actions, the number is indexed from 0, meaning the first option is 0, the second is 1 and so forth. Additionally STK number steps have an additional field "expected text". You must enter the exact (case-insensitive) text of the menu option. This allows Hover to counteract some of the bugginess of the Android STK and error correct to find the right choice.
+    
+###### Variable
+    
+Entries that change at runtime, such as amount to be sent.
+    
+Variable indicates that Hover’s SDK will enter a value that must be provided by your app to the SDK at runtime. It might be a value that your app passes to the SDK after getting input by the user, or something else that your app chooses at runtime. The “Input” is an alphanumeric identifier which you provide to the SDK when initiating a transaction; see <%= link\_to %Q\[Run a USSD session\], page\_path("docs/ussd") %>. Variable steps are useful for actions like send money or pay bill, for example, where users need to enter business numbers and amounts
+    
+###### PIN prompt
+    
+Displays a PIN entry for the user.
+    
+PIN steps enter the user's PIN during the session. When running an action that contains a PIN step, Hover's SDK will display a secure prompt to the user before starting the session. The PIN is encrypted and temporarily stored using the Android Keystore, entered into the session at the appropriate time and then deleted. Note: The PIN **never** leaves the device.
+    
+###### Press OK (no choice)
+    
+Press the confirm button - it usually says OK or Send, but this will press it regardless of the actual text.
+    
+This is used for dialogs that don't have any sort of entry or choices but are just confirmation. It is rare that you will actually need to use this: in most cases Hover confirms automatically after an entry is made or at the end of the session. This is only for cases where a confirmation needs to be made in the middle of the session.
