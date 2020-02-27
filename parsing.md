@@ -6,11 +6,11 @@ permalink: /parsing
 # Parsing
 
 With Hover, you can write regular expressions to parse messages from USSD sessions and SMS responses. Our parsers allow you to:
-- Automatically assign a transaction status to understand transaction success rates and reasons for transaction failures. Hover's SDK captures all USSD session and SMS messages occuring up to five minutes following the end of the transaction. These can be accessed from within your dashboard. 
+- Automatically assign a transaction status to understand transaction success rates and reasons for transaction failures. Hover's SDK captures all USSD session messages and SMS messages, which match your chosen sender and regex, occuring up to twelve hours following the end of the transaction. These can be accessed from the transaction details in your dashboard. 
 
 - Parse out specific information from the USSD message or SMS. This might include the amount of a transaction, the user’s balance, or the transaction confirmation number. Capturing this type of information enables features like persistent in-app transaction histories and low balance notifications.
 
-You can add parsers to any [action](/actions) within your Hover dashboard. When the Hover SDK receives a USSD or SMS message that matches a parser, the parser will set status fields on the associated transaction. A parser “matches” when its regular expression matches the message's text. If you are parsing an SMS, the parser's sender must be an exact match (case sensitive) to the SMS sender. A parser "misses" when the sender matches, but the regular expression does not match the text. 
+You can add parsers to any [action](/actions) within your Hover dashboard. When the Hover SDK receives a USSD or SMS message that matches a parser, the parser will set status fields on the associated transaction. A parser “matches” when its regular expression matches the message's text. If you are parsing an SMS, the parser's sender must be an exact match (case sensitive) to the SMS sender. Hover will also record "misses" for SMS that arrive within fifteen minutes after a transaction. A parser "misses" when the sender matches, but the regular expression does not match the text. 
 
 If you’d prefer to use a third party tool or build your own parser, Hover's SDK always returns the text of USSD sessions. You can also use Android APIs to get SMS responses.
 
