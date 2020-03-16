@@ -15,6 +15,9 @@ menu:
       - page: Parse responses
         url: /parsing
         
+      - page: Error code documentation
+        url: /errors
+        
   - links:
       - page: Dual SIM
         url: /dual-sim
