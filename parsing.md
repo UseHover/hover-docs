@@ -1,14 +1,8 @@
 ---
-layout: page -- 3rd row
-permalink: /parsing -- 3rd row
+layout: page
+permalink: /parsing 
 ---
-|Layout|Permalink|
-|------|---------|
-|Page|/Parsing|
-|3rd|Another 3rd row|
-|4th row| Another 4th row|
-|5th row| Another 5th row|
-|6th row| Another 6th row|
+
 
 # Parsing
 
