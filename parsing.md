@@ -3,6 +3,17 @@ layout: page
 permalink: /parsing 
 ---
 
+|Code|Text|Implication|Possible solutions|
+|------|-----|-------------|---------------------|
+|1001|Could not get the package name. Have you defined it in your Manifest?|Something’s wrong with your android-setup itself. We couldn’t get the package name in your app/build.gradle.. Something similar to com.example.demoapp|- Check your manifest file and ensure your app is set with the right package name.
+- Refractor your android package name.
+- If any of the above doesn't work, create a new project and set your package to have 2 dots e.g com.example.demoapp|
+|1002|Could not find API Key. Is it defined as metadata inside your application tag in your Manifest?|We couldn’t locate your API key in the manifest file.|Ensure to add your API key inside your manifest file. This must be outside an activity tab, but inside the application tag.
+<Application>
+<Activity>....</Activity>
+<meta-data android:name="com.hover.ApiKey"  
+    android:value="<YOUR_API_TOKEN>"/>
+</application>|
 
 # Parsing
 
