@@ -15,8 +15,7 @@ menu:
       - page: Parse responses
         url: /parsing
         
-      - page: Errors
-        url: /errors
+    
         
   - links:
       - page: Dual SIM
@@ -36,6 +35,9 @@ menu:
         
       - page: Releases
         url: /releases
+      
+      - page: Errors
+        url: /errors
         
   - links:
       - page: Blog
