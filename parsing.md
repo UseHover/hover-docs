@@ -1,6 +1,6 @@
 ---
-layout: page : 3rd row
-permalink: /parsing : 3rd row
+layout: page: 3rd row
+permalink: /parsing: 3rd row
 ---
 
 # Parsing
