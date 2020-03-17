@@ -10,6 +10,11 @@
 <br />
 <p>Variable indicates that Hover’s SDK will enter a value that must be provided by your app to the SDK at runtime. It might be a value that your app passes to the SDK after getting input by the user, or something else that your app chooses at runtime. The “Input” is an alphanumeric identifier which you provide to the SDK when initiating a transaction; see <a href="https://docs.usehover.com/ussd">Run a USSD session</a>. Variable steps are useful for actions like send money or pay bill, for example, where users need to enter business numbers and amounts.</p>
 <br />
+<h6>Select number by text value</h6>
+<p>Use to select numbered choices that may change position.</p>
+<br />
+<p>This can be used in cases where the options may change frequently, for example a list of bundles. This is similar to variable, except that it uses the variable value to select a number from the possible options. You can pass the exact text of the option you are looking for or a regex. The corresponding number of the first option who's text matches will be entered in the session before continuing to the next step.</p>
+<br />
 <h6>PIN prompt</h6>
 <p>Displays a PIN entry for the user.</p>
 <br />
