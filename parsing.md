@@ -34,7 +34,7 @@ General rules for writing the regex:
 - Your regex should be as specific as possible to prevent matching unrelated messages. 
 - We recommend ending your regex with `.*` and replacing whitespace with `[\s]*`. This accounts for variation that often occurs in confirmation messages over time, such as ads at the end of the message. 
 - **Use named-groups**. The SDK uses named-groups in the regex to parse out variables and return them to you. For example, if you want to parse the numerical balance out of a Check Balance message, the group in the regex might look like `(?<balance>[0-9\,\.]+)`. Any named groups parsed out of the confirmation will show in the transaction details for that transaction in the Hover Dashboard. See [below](/parsing) for how to get this information in-app.
-- Check your regex. We recommend [RegexPlanet](/https://www.regexplanet.com/advanced/java/index.html) (note: case-insensitive should be ON).
+- Check your regex. We recommend [RegexPlanet](https://www.regexplanet.com/advanced/java/index.html) (note: case-insensitive should be ON).
 
 Here's a fictional example of a Check Balance confirmation SMS and a regular expression with named-groups:
 
