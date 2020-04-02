@@ -49,7 +49,7 @@ To find or create an API token visit your <%= link\_to "Hover dashboard", organi
 
 First have your app initialize the Hover SDK by calling `Hover.initialize()`. This should ideally happen at app launch.
 
-<%= render "pages/snippets/initialize" %>
+{% include initialize.html %}
 
 This call downloads your configuration information from the Hover server. If the `READ_PHONE_STATE` permission has been granted it also reads the SIM cards the user has present and listens for changes to them.
 
