@@ -48,8 +48,8 @@ This is an object representing how you want to navigate USSD menus on user devic
 ```
 
 
-#### GET index
-URL: `/api/actions/`
+#### List all actions
+###### `GET /api/actions/`
 
 Response:
 ```json
@@ -125,8 +125,8 @@ Response:
 }
 ```
 
-#### GET parsers
-URL: `/api/actions/ACTION_PUBLIC_ID/parsers`
+#### List all parsers linked to an action
+###### `GET /api/actions/ACTION_PUBLIC_ID/parsers`
 
 Returns a list of parsers that have been configured for this action.
 response:
@@ -189,8 +189,8 @@ response:
 }
 ```
 
-#### POST create
-URL: `/api/actions`
+#### Create an action
+###### `POST /api/actions`
 
 This endpoint expects a JSON object with the following schema:
 ```json
@@ -292,8 +292,8 @@ Response:
 }
 ```
 
-#### GET show
-URL: `api/actions/ACTION_PUBLIC_ID`
+#### Retrieve an action
+###### `GET api/actions/ACTION_PUBLIC_ID`
 
 Example:
 ```bash
@@ -305,8 +305,8 @@ https://www.usehover.com/api/actions/13ce04ca
 The server will respond with an action JSON object.
 
 
-#### PATCH update
-URL: `api/actions/ACTION_PUBLIC_ID`
+#### Update an action
+###### `PATCH api/actions/ACTION_PUBLIC_ID`
 
 This endpoint expects a JSON object with the schema outlined below. If you have steps configured, you'll have to include them in your payload.
 ```json
@@ -367,8 +367,8 @@ curl \
 https://www.usehover.com/api/actions/13ce04ca
 ```
 
-#### DELETE destroy
-URL: `api/actions/ACTION_PUBLIC_ID`
+#### Archive an action
+###### `DELETE api/actions/ACTION_PUBLIC_ID`
 
 This endpoint moves the action to the archives. You can undo this action by making a PUT request to `api/actions/ACTION_PUBLIC_ID/restore`.
 
@@ -387,8 +387,8 @@ The server should respond with the following JSON payload.
 {"id":"13ce04ca","archived":true}
 ```
 
-#### PUT restore
-URL: `api/actions/ACTION_PUBLIC_ID/restore`
+#### Restore an action
+###### `PUT api/actions/ACTION_PUBLIC_ID/restore`
 
 This endpoint restores an archived action.
 
