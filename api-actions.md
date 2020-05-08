@@ -125,6 +125,70 @@ Response:
 }
 ```
 
+#### GET parsers
+URL: `/api/actions/ACTION_PUBLIC_ID/parsers`
+
+Returns a list of parsers that have been configured for this action.
+response:
+```json
+{
+    "data": [
+        {
+            "id": "367568",
+            "type": "custom_parser",
+            "attributes": {
+                "id": 367568,
+                "status": "succeeded",
+                "category": "It worked!",
+                "target_type": "ussd",
+                "sender": "",
+                "regex": ".*Airtime[\\s]*Bal:[\\s]*(?<balance>[0.00-9.99]+).*",
+                "user_message": "",
+                "created_at": "2019-05-09T14:55:08Z",
+                "updated_at": "2019-05-09T14:55:08Z",
+                "archived_at": null,
+                "custom_action_public_id": "e5d44686",
+                "transactions_count": 154
+            },
+            "relationships": {
+                "custom_action": {
+                    "data": {
+                        "id": "1870",
+                        "type": "custom_action"
+                    }
+                }
+            }
+        },
+        {
+            "id": "495968",
+            "type": "custom_parser",
+            "attributes": {
+                "id": 495968,
+                "status": "succeeded",
+                "category": "line-not-active",
+                "target_type": "sms",
+                "sender": "Safaricom",
+                "regex": ".*Dear Customer.*",
+                "user_message": "Line not active",
+                "created_at": "2019-09-13T09:06:20Z",
+                "updated_at": "2019-09-13T09:06:20Z",
+                "archived_at": null,
+                "custom_action_public_id": "e5d44686",
+                "transactions_count": 0
+            },
+            "relationships": {
+                "custom_action": {
+                    "data": {
+                        "id": "1870",
+                        "type": "custom_action"
+                    }
+                }
+            }
+        }
+    ]
+}
+```
+
 #### POST create
 URL: `/api/actions`
 
@@ -238,7 +302,7 @@ curl \
 -H "Authorization: JWT-TOKEN" \
 https://www.usehover.com/api/actions/13ce04ca
 ```
-The server will respond with an action object.
+The server will respond with an action JSON object.
 
 
 #### PATCH update
@@ -318,7 +382,7 @@ Example:
 https://www.usehover.com/api/actions/13ce04ca
 ```
 
-The endpoint should respond with the following JSON payload.
+The server should respond with the following JSON payload.
 ```json
 {"id":"13ce04ca","archived":true}
 ```
