@@ -10,7 +10,7 @@ The Hover API is organized around [REST](http://en.wikipedia.org/wiki/Representa
 Blank fields return as `null` and timestamps return in ISO 8601 format: `2020-02-10T16:13:55Z`.
 
 #### Authentication
-The Hover API uses [JWT](https://jwt.io/) to authenticate requests.
+The Hover API uses [JWT](https://jwt.io/) to authenticate requests. Use the email and password for your Hover dashboard login.
 
 ##### Authentication Flow
 
