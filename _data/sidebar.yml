@@ -40,7 +40,7 @@ menu:
         url: /errors
 
   - links:
-      - page: API
+      - page: Configuration API
         url: /api
       - page: Actions
         url: /api/actions
