@@ -3,9 +3,9 @@ layout: page
 permalink: /api
 ---
 
-# API Reference
+# Configuration API Reference
 
-The Hover API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). All API access is over HTTPS, and accessed from [https://www.usehover.com/api](https://www.usehover.com/api). All data is sent and received as JSON.
+The Hover API allows you to create, edit, and download actions and parsers for your account. is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). All API access is over HTTPS, and accessed from [https://www.usehover.com/api](https://www.usehover.com/api). All data is sent and received as JSON.
 
 Blank fields return as `null` and timestamps return in ISO 8601 format: `2020-02-10T16:13:55Z`.
 
