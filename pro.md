@@ -21,15 +21,15 @@ In your root level `build.gradle` replace your current usehover url with the pro
 		...
 		google()
 		maven {
-        url 'https://pro.maven.usehover.com/releases'
-        credentials {
-            username project.HoverUsername
-            password project.HoverPassword
-        }
-        authentication { basic(BasicAuthentication) }
-        content { includeGroup "com.hover" }
-	}
-}</code></pre>
+			url 'https://pro.maven.usehover.com/releases'
+			credentials {
+			    username project.HoverUsername
+			    password project.HoverPassword
+			}
+			authentication { basic(BasicAuthentication) }
+			content { includeGroup "com.hover" }
+		}
+	}</code></pre>
 </figure>
 
 In your `gradle.properties` file on your local machine add your username and password:
@@ -37,8 +37,7 @@ In your `gradle.properties` file on your local machine add your username and pas
 <figure>
 	<pre><code class="gradle" data-lang="gradle">
 	HoverUsername=HOVER_DASHBOARD_USERNAME
-	HoverPassword=HOVER_DASHBOARD_PASSWORD
-}</code></pre>
+	HoverPassword=HOVER_DASHBOARD_PASSWORD</code></pre>
 </figure>
 
 <div class="call-out call-out-info">
