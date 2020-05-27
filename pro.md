@@ -5,7 +5,7 @@ permalink: /pro
 
 # Pro SDK
 
-The pro SDK allows you to skip the confirmation and PIN screens, passing the PIN as a variable. This enables developers with access to the pro SDK to script 100% of the transaction process, enabling batched transactions and remotely triggered transactions. 
+The pro SDK allows you to skip the confirmation and PIN screens when running a transaction, passing the PIN as a variable. This enables developers with access to the pro SDK to script 100% of the transaction process, enabling batched transactions and remotely triggered transactions. Your Hover account must have the functionality enabled by the Hover team to use the pro SDK.
 
 #### Install the Pro SDK
 
@@ -13,7 +13,7 @@ The pro SDK allows you to skip the confirmation and PIN screens, passing the PIN
 
 To use the pro version of the SDK your account needs to have the functionality enabled by the Hover team. Once done all you need to do is update each of the `build.gradle` files in your app and add your username and password.
 
-In your root level `build.gradle` replace your current usehover url with the pro url:
+In your root level `build.gradle` replace your current usehover url with the pro url and add credential configuration:
 
 <figure>
 	<pre><code class="gradle" data-lang="gradle">allprojects { 
@@ -36,13 +36,13 @@ In your `gradle.properties` file on your local machine add your username and pas
 
 <figure>
 	<pre><code class="gradle" data-lang="gradle">
-		HoverUsername=HOVER_DASHBOARD_USERNAME
-		HoverPassword=HOVER_DASHBOARD_PASSWORD
+	HoverUsername=HOVER_DASHBOARD_USERNAME
+	HoverPassword=HOVER_DASHBOARD_PASSWORD
 }</code></pre>
 </figure>
 
 <div class="call-out call-out-info">
-    <p>Make sure you add these to the `gradle.properties` in your gradle folder, not in your code repository. Credentials should never be submitted to version control. on Linux this is at ~/.gradle/</p>
+    <p>Make sure you add these to the `gradle.properties` in your gradle folder, not in your code repository. Credentials should never be submitted to version control. On Linux this file is located at `~/.gradle/`</p>
 </div>
 
 Finally in your app level `build.gradle` switch to the pro version of the SDK:
@@ -53,3 +53,23 @@ Finally in your app level `build.gradle` switch to the pro version of the SDK:
 	implementation 'com.hover:android-sdk:<span class="version-number"></span>-pro'
 }</code></pre>
 </figure>
+
+#### Use the Pro SDK
+
+To make the SDK skip the confirm and PIN screens you simply pass the pin as an extra when you start your transaction:
+
+<figure>
+	<pre><code class="java" data-lang="java">Button button= (Button) findViewById(R.id.action_button);
+button.setOnClickListener(new View.OnClickListener() {
+	@Override
+	public void onClick(View v) {
+		Intent i = new HoverParameters.Builder(this)
+			.request("action_id")
+			.extra("pin", pin_value_as_string)
+			.buildIntent();
+		startActivityForResult(i, 0);
+	}
+});</code></pre>
+</figure>
+
+The PIN value will never leave the device except in the USSD session. If the action has no PIN, but you want to skip the confirm screen you can pass any string value for the pin: `.extra("pin", "1234")`.
