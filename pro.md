@@ -36,8 +36,8 @@ In your `gradle.properties` file on your local machine add your username and pas
 
 <figure>
 	<pre><code class="gradle" data-lang="gradle">
-	HoverUsername=HOVER_DASHBOARD_USERNAME
-	HoverPassword=HOVER_DASHBOARD_PASSWORD</code></pre>
+HoverUsername=HOVER_DASHBOARD_USERNAME
+HoverPassword=HOVER_DASHBOARD_PASSWORD</code></pre>
 </figure>
 
 <div class="call-out call-out-info">
