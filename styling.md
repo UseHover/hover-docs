@@ -17,7 +17,7 @@ Hover.setBranding("Runner by Hover", R.drawable.ic_runner_logo, this);
 
 You should replace the drawable file with your logo drawable, and ensure it is placed after Hover’s initialization in the MainActivity. An example of this is in line 41 and 42 of the below image.
 
- <img src="/assets/images/styling1.png">
+ <div><img src="/assets/images/styling1.png"></div>
  
  
  
@@ -33,7 +33,7 @@ You should replace the drawable file with your logo drawable, and ensure it is p
  builder.style(R.style.myHoverTheme); //Change this to your preferred style-id inyour app project
  </div>
  
- <img src="/assets/images/styling2.png">
+  <div><img src="/assets/images/styling2.png"> </div>
  
  
  
