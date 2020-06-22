@@ -1,0 +1,7 @@
+<p>The status that a parser sets must be either `succeeded`, `failed`, or `pending`.</p>
+
+<p>You don't need to set a `pending` status, since this is the default. Only use this status if you want to parse something out of a USSD message and then wait for another response.</p>
+
+<p>`Failed` should be used to watch for failure messages. For instance, if you want to know how many transactions fail because of insufficient balance, you can create a parser with `Failed` as the status and "insufficient-balance" as the category.</p>
+
+<p>`Succeeded` should be used to process confirmation messages. In this case the category might just be "confirmed". Be sure to account for multiple confirmation possibilities, such as multiple languages. For example, to parse confirmations in Swahili and English, you might create two parsers: one for "confirmed-en" and one for "confirmed-sw".</p>

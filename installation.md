@@ -41,15 +41,15 @@ There can be various build errors and conflicts depending on which Android Studi
 
 Then include your API token as application level meta-data in your AndroidManifest.xml:
 
-<%= render "pages/snippets/api\_token" %>
+{% include api_token.html %}
 
-To find or create an API token visit your <%= link\_to "Hover dashboard", organizations\_path, target: :\_blank %> and click on your app, or make a new app. **The package name in our dashboard must match that of your actual app for the token to work.**
+To find or create an API token visit your Hover dashboard and click on your app, or make a new app. **The package name in our dashboard must match that of your actual app for the token to work.**
 
 #### Initialize
 
 First have your app initialize the Hover SDK by calling `Hover.initialize()`. This should ideally happen at app launch.
 
-<%= render "pages/snippets/initialize" %>
+{% include initialize.html %}
 
 This call downloads your configuration information from the Hover server. If the `READ_PHONE_STATE` permission has been granted it also reads the SIM cards the user has present and listens for changes to them.
 

@@ -18,13 +18,9 @@ If you’d prefer to use a third party tool or build your own parser, Hover's SD
 
 ###### Choosing a status and category
 
-The status that a parser sets must be either `succeeded`, `failed`, or `pending`. You may also set a custom category that briefly describes the reason for the state of a transaction. Categories allow you to filter and group transactions in your dashboard and data exports. Each must be unique among all parsers for a single action.
+{% include status.html %}
 
-You don't need to set a `pending` status, since this is the default. Only use this status if you want to parse something out of a USSD message and then wait for another response. 
-
-`Failed` should be used to watch for failure messages. For instance, if you want to know how many transactions fail because of insufficient balance, you can create a parser with `Failed` as the status and "insufficient-balance" as the category.
-
-`Succeeded` should be used to process confirmation messages. In this case the category might just be "confirmed". Be sure to account for multiple confirmation possibilities, such as multiple languages. For example, to parse confirmations in Swahili and English, you might create two parsers: one for "confirmed-en" and one for "confirmed-sw". 
+{% include categories.html %}
 
 ###### Writing the regex
 

@@ -38,6 +38,14 @@ menu:
       
       - page: Errors
         url: /errors
+
+  - links:
+      - page: Configuration API
+        url: /api
+      - page: Actions
+        url: /api/actions
+      - page: Parsers
+        url: /api/parsers
         
   - links:
       - page: Blog
