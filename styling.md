@@ -32,9 +32,12 @@ You should replace the drawable file with your logo drawable, and ensure it is p
  
  <img src="/assets/images/styling2.png">
  
+ 
+ 
+ 
  #### Implement your styling items
  
- It is very important to note, that if you’re setting up a customized styling, there are 6 items that you need to include in your styling file: res/value/styles.xml.
+ It is very important to note, that if you’re setting up a customized styling, there are 6 items that you need to include in your styling file: res/value/styles.xml .
  
  
  
@@ -48,4 +51,4 @@ PosTheme is used in styling every other buttons e.g confirm button.
 
 
 
-[Next: Parsers](/parsing)
+[Next: Parser responses](/parsing)
