@@ -7,7 +7,7 @@ permalink: /styling
 
 Styling the look your USSD payment with Hover is an important part of your branding. It differentiates your app from others, and the SDK gives you the flexibility to customize. The following examples only work starting from v1.5.4, so don’t forget to update.
 
-## Add your logo
+1. Add your logo
 
 This hasn’t changed from previous versions, but it’s important you take notice of this, as we’re making your branding even more pronounced to your users. All you need to do is to add:
 
@@ -22,7 +22,7 @@ You should replace the drawable file with your logo drawable, and ensure it is p
  
  
  
- ##  Reference styling
+ 2. Reference styling
 
  Just before you call Hover’s sdk intent, you need to set your styling.
 
@@ -39,7 +39,7 @@ You should replace the drawable file with your logo drawable, and ensure it is p
  
  
  
- ## Implement your styling items
+ 3. Implement your styling items
  
  It is very important to note, that if you’re setting up a customized styling, there are 6 items that you need to include in your styling file: res/value/styles.xml .
  
