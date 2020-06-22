@@ -19,6 +19,9 @@ You should replace the drawable file with your logo drawable, and ensure it is p
 
  <img src="/assets/images/styling1.png">
  
+ 
+ 
+ 
  #### Reference styling
 
  Just before you call Hover’s sdk intent, you need to set your styling.
