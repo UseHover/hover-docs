@@ -8,9 +8,55 @@ permalink: /customization
 #### Customize the User Interface
 
 When running a USSD session you can do some simple customizations to the confirm, PIN, processing and completion screens. You can add branding to the top of the processing screen using the following method:
-`Hover.setBranding(String brand_name_string, int logo_drawable, context)` This will permanently set the branding until it is called again, so it only needs to be called once, probably wherever Hover.initialize() is called. To change the colors on Hover SDK screens simply create a new style in your styles.xml file and define `colorPrimary`, `colorAccent`, and `colorPrimaryDark`. You can try defining other attributes as well, but we have not yet tested or made it easy to tell what will affect what. When making your call to HoverParameters.Builder() simply call the following method:
 
-    new HoverParameters.Builder(this).request("action_id").style(R.style.YOUR_STYLE);
+When running a USSD session you can do some simple customizations to the confirm, PIN, processing and completion screens. It differentiates your app from others, and the SDK gives you the flexibility to customize. The following examples only work starting from v1.5.4, so don’t forget to update.
+
+- Add your logo
+
+This hasn’t changed from previous versions, but it’s important you take notice of this, as we’re making your branding even more pronounced to your users. All you need to do is to add:
+
+<div class="call-out call-out-info">
+Hover.setBranding("Runner by Hover", R.drawable.ic_runner_logo, this); 
+</div>
+
+You should replace the drawable file with your logo drawable, and ensure it is placed after Hover’s initialization in the MainActivity. An example of this is in line 41 and 42 of the below image.
+
+ <div><img src="/assets/images/styling1.png"></div>
+ 
+ 
+ 
+ 
+ - Reference styling
+
+ Just before you call Hover’s sdk intent, you need to set your styling.
+
+<div class="call-out call-out-info">
+ HoverParameters.Builder builder = new HoverParameters.Builder(getContext());
+ builder.request("yourActionId");
+ builder.initialProcessingMessage("yourProcessingMessage");
+ 
+ builder.style(R.style.myHoverTheme); //Change this to your preferred style-id inyour app project
+ </div>
+ 
+  <div><img src="/assets/images/styling2.png"> </div>
+ 
+ 
+ 
+ 
+ -  Implement your styling items
+ 
+ It is very important to note, that if you’re setting up a customized styling, there are 6 items that you need to include in your styling file: res/value/styles.xml .
+ 
+ 
+
+{% include styling_snippet_1.html %}
+
+Where Hover primaryColor, textColor, textColorTitle and pinEntryColor accepts colors, Hover pinTheme and posTheme accepts another styling item.
+
+PinThem is used to styling your PIN buttons.
+PosTheme is used in styling every other buttons e.g confirm button.
+
+  
     
 #### Customize the Text
 
