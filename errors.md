@@ -69,9 +69,6 @@ The SDK could not determine what the problem was. Try again and contact Hover fo
 |5012|Could not decrypt PIN. Please contact Hover with your device model if the problem continues.|The Android Keystore is used to securely store the user's PIN. On some devices it can misbehave.|(**1**) Restart your device and try again.&#13;(**2**) Please contact Hover with your device model if the problem continues.|
 |5013|Could not use PIN. Please contact Hover with your device model if the problem continues.|The Android Keystore is used to securely store the user's PIN. On some devices it can misbehave.|(**1**) Restart your device and try again.&#13;(**2**) Please contact Hover with your device model if the problem continues.|
 
-|6001|Could not use PIN. Please contact Hover with your device model if the problem continues.|The Android Keystore is used to securely store the user's PIN. On some devices it can misbehave.|(**1**) Restart your device and try again.&#13;(**2**) Please contact Hover with your device model if the problem continues.|
-
-
 |6001|Received invalid Intent.|You tried to make a call to Hover with an invalid Intent.|Check that your API usage is correct and contact Hover if the problem persists.|
 |6002|Please ensure you have READ_PHONE_STATE permission|You tried to make a call to a Hover SDK API that requires the READ_PHONE_STATE permission but it hasn't been granted.|Ensure the permission is granted before calling the API method.|
 |6003|You must specify a list of actions|You tried to make a call to a Hover SDK API that requires you to specify a list of action IDs.|Ensure you are calling the API correctly.|
