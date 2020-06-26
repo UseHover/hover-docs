@@ -5,6 +5,10 @@ permalink: /errors
 
 # Error Codes
 
+<div class="call-out call-out-info">
+	  <p>These errors codes are used in Hover SDK 1.6.0 and up. They do not match the codes introduced in 1.5.3 (there were a number of bugs), so please update before referencing this document.</p>
+</div>
+
 Hover errors are categorized into 7 types. These errors are shown in the Android Studio logcat, but are not shown to users.
 
 ###### Configuration errors (LEVEL 1) 
