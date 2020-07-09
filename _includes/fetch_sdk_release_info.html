@@ -1,6 +1,6 @@
 <script>
 	function getCurrentVersion() {
-		$.get("https://maven.usehover.com/releases/com/hover/android-sdk/maven-metadata.xml",
+		$.get("https://s3-eu-west-1.amazonaws.com/maven.usehover.com/releases/com/hover/android-sdk/maven-metadata.xml",
 			function(xmlData) {
 				$(xmlData).find("release").each(function() {
 					setJavadocLink($(this).text());
@@ -14,7 +14,7 @@
 	}
 
 	function setJavadocLink(version) {
-		$(".javadoc-link").attr("href", "http://maven.usehover.com/releases/com/hover/android-sdk/" + version + "/android-sdk-" + version + "-javadoc.jar");
+		$(".javadoc-link").attr("href", "https://s3-eu-west-1.amazonaws.com/maven.usehover.com/releases/com/hover/android-sdk/" + version + "/android-sdk-" + version + "-javadoc.jar");
 	}
 
 	function setReleaseVersion(version) {
