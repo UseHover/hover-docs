@@ -4,6 +4,7 @@
 			@Override
 			public void onCreate() {
    				super.onCreate();
+				Replacer replacer = HoverFontReplacer.Build(getApplicationContext());   
    				replacer.setDefaultFont("Gibson-Regular.otf");
 				replacer.setBoldFont("Gibson-Bold.otf");
 				replacer.setItalicFont("Gibson-SemiBoldItalic.otf");
