@@ -42,6 +42,8 @@ menu:
   - links:
       - page: Configuration API
         url: /api
+      - page: Apps
+        url: /api/apps
       - page: Actions
         url: /api/actions
       - page: Parsers
