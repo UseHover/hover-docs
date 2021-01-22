@@ -71,20 +71,22 @@ button.setOnClickListener(new View.OnClickListener() {
 });</code></pre>
 </figure>
 
-The PIN value will never leave the device except in the USSD session. If the action has no PIN, but you want to skip the confirm screen you can pass any string value for the pin: `.extra("pin", "1234")`.
 
 #### PRO customization
-With the Pro SDK, you have access to pass in your own layout customization as a parameter into the sdk, starting from version v1.7.0
+With the Pro SDK, you have access to pass in your own transacting screen layout customization as a parameter into the sdk, starting from version v1.7.0
 
 To pass in your custom layout, use
 <figure>
 <pre><code class="java" data-lang="java">
+HoverParameters.Builder builder = new HoverParameters.Builder(context);
 ...
-builder.styleView(R.layout.yourlayoutname)
+builder.sessionOverlayLayout(R.layout.yourlayoutname)
 </code></pre></figure>
 
 In other to make use of the regular customization options available at [Customization's page](/customization) and make it work with your custom layout, you may need to include certain widgets with specific resource id.
 
+- Your root layout is recommended to be a RelativeLayout with id: @+id/mainBackground
+- To include the Hover's progress animation background, add an empty FrameLayout with @+id/animationBackground and height 0dp;
 - Logo: ImageView with id "@+id/logo"
 - Continue button: Button with id "@+id/continue_text"
 - Primary progress text: TextSwitcher with id "@+id/textswitcher"
