@@ -45,4 +45,13 @@ If you wish to change the text that appears when a user goes to the Accessibilit
 
 You can translate the strings that are part of Hover's UI components. The list of string resources to translate are in the root folder of the Hover SDK's aar packaging called `public.txt` you can find the current english value of those strings in `/res/values/values.xml`
 
+#### Font customisation
+Font customization allows you to have a uniform font look through your app including when calling the Hover SDK.
+
+To achieve this, you’d need to use the inbuilt Hovers Font method. First, you need to put your fonts  in the assets folder. Then add it to your ApplicationInstance.java or singleton class.java 
+
+<div><img src="/assets/images/font_screenshot.png"></div>
+
+{% include fonts.html %}
+
 [Next: Hover Tester](/hover-tester)
