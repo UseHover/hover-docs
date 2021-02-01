@@ -9,6 +9,24 @@ permalink: /errors
 	  <p>These errors codes are used in Hover SDK 1.6.0 and up. They do not match the codes introduced in 1.5.1, so please update before referencing this document.</p>
 </div>
 
+###### Preventive measure
+We recommend not using a static method when calling Hover methods. For example
+<figure>
+<pre><code class="java" data-lang="java">
+// ->Do not use
+public static void methodName() {
+//Calling hover builder, paramater or SimInfo method
+.....
+}
+
+// ->Instead, use
+public void methodName() {
+//Calling hover builder, paramater or SimInfo method
+.....
+}
+</code></pre></figure>
+
+##### Errors
 Hover errors are categorized into 7 types. These errors are shown in the Android Studio logcat, but are not shown to users.
 
 ###### Configuration errors (LEVEL 1) 
