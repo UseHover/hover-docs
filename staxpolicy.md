@@ -4,7 +4,7 @@ permalink: /staxpolicy
 ---
 
 # Stax App
-This page contains botht the privacy policy and the Terms and conditions of Stax app
+This page contains botht the privacy policy and the Terms of service of Stax app
 
 ### Privacy Policy
 
@@ -15,14 +15,14 @@ If you choose to use our Service, then you agree to the collection and use of in
 The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which are accessible at Stax unless otherwise defined in this Privacy Policy.
 
 ###### Information Collection and Use
-For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information, including but not limited to email, device ID and anonymous analytics. The information that we request will be retained by us and used as described in this privacy policy.
-The app does use third-party services that may collect information used to identify you.
+For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information, including but not limited to email address. The information that we request will be retained by us and used as described in this privacy policy.
 
-###### Link to the privacy policy of third-party service providers used by the app
+- To use certain features on the Stax App, Hover requests for email address and uses it for the purpose of your account opening and management
+
+The app does use third-party services that may collect information used to identify you, these are
 - Google Play Services
 - Google Analytics for Firebase
 - Firebase Crashlytics
-- Facebook
 - Sentry
 - Amplitude
 
@@ -61,7 +61,7 @@ If you have any questions or suggestions about our Privacy Policy, do not hesita
 
 ### Terms And Conditions
 
-###### Terms & Conditions
+###### Terms of service
 By downloading or using the app, these terms will automatically apply to you – you should make sure therefore that you read them carefully before using the app. You’re not allowed to copy or modify the app, any part of the app, or our trademarks in any way. You’re not allowed to attempt to extract the source code of the app, and you also shouldn’t try to translate the app into other languages or make derivative versions. The app itself, and all the trademarks, copyright, database rights, and other intellectual property rights related to it, still belong to Hover.
 
 Hover is committed to ensuring that the app is as useful and efficient as possible. For that reason, we reserve the right to make changes to the app or to charge for its services, at any time and for any reason. We will never charge you for the app or its services without making it very clear to you exactly what you’re paying for.
@@ -79,12 +79,6 @@ The app does use third-party services that declare their Terms and Conditions.
 - Sentry
 - Amplitude
 
-
-You should be aware that there are certain things that Hover will not take responsibility for. Certain functions of the app will require the app to have an active internet connection. The connection can be Wi-Fi or provided by your mobile network provider, but Hover cannot take responsibility for the app not working at full functionality if you don’t have access to Wi-Fi, and you don’t have any of your data allowance left.
-
-If you’re using the app outside of an area with Wi-Fi, you should remember that the terms of the agreement with your mobile network provider will still apply. As a result, you may be charged by your mobile provider for the cost of data for the duration of the connection while accessing the app, or other third-party charges. In using the app, you’re accepting responsibility for any such charges, including roaming data charges if you use the app outside of your home territory (i.e. region or country) without turning off data roaming. If you are not the bill payer for the device on which you’re using the app, please be aware that we assume that you have received permission from the bill payer for using the app.
-
-Along the same lines, Hover cannot always take responsibility for the way you use the app i.e. You need to make sure that your device stays charged – if it runs out of battery and you can’t turn it on to avail the Service, Hover cannot accept responsibility.
 
 With respect to Hover’s responsibility for your use of the app, when you’re using the app, it’s important to bear in mind that although we endeavor to ensure that it is updated and correct at all times, we do rely on third parties to provide information to us so that we can make it available to you. Hover accepts no liability for any loss, direct or indirect, you experience as a result of relying wholly on this functionality of the app.
 
