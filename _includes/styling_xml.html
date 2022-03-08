@@ -1,11 +1,9 @@
 <figure>
 	<pre><code class="xml" data-lang="xml">
 &lt;resources&gt;
-
-	&lt;style name="myHoverTheme" parent="@style/HoverTheme.Base" /&gt;
-	&lt;style name="HoverTheme.Base" parent="Theme.AppCompat.Light.NoActionBar"&gt;
-
+	&lt;style name="myHoverTheme" parent="Theme.AppCompat.Light.NoActionBar" /&gt;
 		&lt;item name="android:windowActionBar"&gt;true&lt;/item&gt;
+		&lt;item name="android:windowContentTransitions"&gt;true&lt;/item&gt;
 		&lt;item name="colorPrimary"&gt;@color/colorPrimary&lt;/item&gt;
 		&lt;item name="colorPrimaryDark"&gt;@color/colorPrimaryDark&lt;/item&gt;
 		&lt;item name="colorAccent"&gt;@color/colorAccent&lt;/item&gt;
@@ -16,10 +14,7 @@
 
 		&lt;item name="hover_pinTheme"&gt;@style/PinButtonTheme&lt;/item&gt;
 		&lt;item name="hover_posTheme"&gt;@style/PosButtonTheme&lt;/item&gt;
-		&lt;item name="android:windowContentTransitions"&gt;true&lt;/item&gt;
-
 	&lt;/style&gt;
-
 
 	&lt;style name="PinButtonTheme" parent="Widget.AppCompat.Button.Borderless"&gt;
 		&lt;item name="android:textColor"&gt;@color/colorPureWhite&lt;/item&gt;

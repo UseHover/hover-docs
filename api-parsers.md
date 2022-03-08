@@ -120,7 +120,7 @@ curl \
 -H "Content-Type: application/json" \
 -H "Authorization: JWT-TOKEN" \
 -X PATCH -d '{"parser":{ "regex":".*Airtime[\\s]*Balance:[\\s]*(?<balance>[0.00-9.99]+).*" }}' \
-https://www.usehover.com/api/parsers
+https://www.usehover.com/api/parsers/157340
 ```
 
 The server responds with the updated parser in JSON format.

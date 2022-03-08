@@ -7,10 +7,23 @@ permalink: /customization
 
 #### Customize the User Interface
 
-When running a USSD session you can do some simple customizations to the confirm, PIN, processing and completion screens. You can add branding to the top of the processing screen using the following method:
-`Hover.setBranding(String brand_name_string, int logo_drawable, context)` This will permanently set the branding until it is called again, so it only needs to be called once, probably wherever Hover.initialize() is called. To change the colors on Hover SDK screens simply create a new style in your styles.xml file and define `colorPrimary`, `colorAccent`, and `colorPrimaryDark`. You can try defining other attributes as well, but we have not yet tested or made it easy to tell what will affect what. When making your call to HoverParameters.Builder() simply call the following method:
+When running a USSD session you can do some simple customizations to the confirm, PIN, processing and completion screens. 
 
-    new HoverParameters.Builder(this).request("action_id").style(R.style.YOUR_STYLE);
+To use your logo on the processing screen simply call `Hover.setBranding("BRAND NAME", R.drawable.YOUR_LOGO, this);`. This only needs to be done once, usually right after you call Hover’s initialization function in the MainActivity.
+ 
+###### Colors
+
+When calling the `HoverParameter.Builder` you can pass a style to change the look of the confirm, PIN, processing, and processed screens.
+
+<figure>
+ <pre><code class="java" data-lang="java">new HoverParameters.Builder(this).request("action_id").style(R.style.myHoverTheme);</code></pre>
+</figure>
+ 
+There are 6 items that you need to include in the style you pass. Your styles are defined in the styling file which is usually at `res/value/styles.xml`:
+
+{% include styling_xml.html %}
+
+Where Hover primaryColor, textColor, textColorTitle and pinEntryColor accepts colors, and pinTheme and posTheme accepts another styling item which must inherit from a Button style. The PinTheme is used to style the PIN pad number buttons while PosTheme is used to style the confirm and back buttons.
     
 #### Customize the Text
 
