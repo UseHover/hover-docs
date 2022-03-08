@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{ site.title }}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ '/assets/images/dark_favicon.ico' | relative_url }}">
+    <link rel="canonical" href="{{ site.url }}{{ page.url | replace: 'index.html', ''}}">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/channels.css' | relative_url }}">
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  </head>
+  <body class="docs">
+    <div class="is-family-secondary is-dark">
+      {%- include header.html -%}
+      <div class="container is-fluid">
+        <div class="columns content-container">
+          <div class="column is-narrow is-hidden-mobile">
+            {%- include sidebar.html -%}
+          </div>
+          <div class="column"></div>
+          <div class="column is-three-fifths main-content">
+            {{ content }}
+          </div>
+          <div class="column"></div>
+          <div class="column"></div>
+        </div>
+      </div>
+      {%- include footer.html -%}
+    </div>
+    {%- include google_analytics.html -%}
+    {%- include intercom.html -%}
+    {%- include code_copier.html -%}
+    {%- include fetch_sdk_release_info.html -%}
+    {%- include channels-script.html -%}
+  </body>
+</html>
