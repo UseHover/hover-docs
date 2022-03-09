@@ -1,103 +1,186 @@
 <script>
 const root_url = "https://www.usehover.com/";
-let countries = [],	country = null, channels = [];
+let countries = [],	country = null, channels = [], actions = [], request = null;
 
-function load(url, callback, errorCallback) { $.ajax({type: "GET", url: url, success: callback, errorCallback }); }
+function load(url, callback, errorCallback) { 
+	if (request != null) { request.abort(); }
+	request = $.ajax({type: "GET", url: url, success: callback, errorCallback }); 
+}
 
 function loadCountries() {
 	console.log("loading countries");
-	// document.getElementById("ussd-country-dropdown-container").append(<p>Gotcha</p>);
 	load(root_url + "api/countries?channels=true", onLoadCountries, countriesError); 
-}
-
-function loadChannels() {
-	if (window.location.href.includes("channel-reference")) {
-		const urlParams = new URLSearchParams(window.location.search);
-		const url = window.location.href.replace(/\/$/, '');
-		const lastSeg = url.substring(url.lastIndexOf('/') + 1);
-		
-		if (urlParams.get("country")) {
-			country = countries.find(c => { return c.alpha2.toUpperCase() === urlParams.get("country").toUpperCase(); });
-		} else if (lastSeg.length == 2) {
-			country = countries.find(c => { return c.alpha2.toUpperCase() === lastSeg.toUpperCase(); });
-		}
-
-		var channel_url = root_url + "api/channels?bookmarked=true&order_key=name";
-		if (country) {
-			setPageCountry(country);
-			channel_url += "&country=" + country.alpha2;
-		}
-		load(channel_url, onLoadChannels, channelsError);
-	}
-}
-
-function setPageCountry(country) {
-	$("#selected-country-dropdown").text(getCountryFlag(country) + " " + country.name.toUpperCase());
-	document.title = document.title + ": " + country.name;
-	if (descriptions && descriptions[country.alpha2.toUpperCase()]) {
-		$("#custom-description").html(descriptions[country.alpha2.toUpperCase()]);
-		document.getElementsByTagName('meta')["description"].content = descriptions[country.alpha2.toUpperCase()];
-	}
-}
-
-function fillInDropdowns() { 
-	countries.forEach(country => addCountryToDropdown(country));
-}
-
-function addCountryToDropdown(country) {
-	var link = document.createElement("a");
-	link.className = "dropdown-item " + country.alpha2;
-	link.href = "/ussd-codes/" + country.alpha2;
-	link.innerHTML = getCountryFlag(country) + " " + country.name;
-	var li = document.createElement("li");
-	li.append(link);
-	$("#dropdown-country-list").append(li.cloneNode(true));
-	$("#header-dropdown-country-list").append(li);
-}
-
-function fillInList() { 
-	$("#channels-loading").hide();
-	channels.forEach(channel => addChannel(channel));
-}
-
-function addChannel(channel) {
-	var tr = document.createElement("tr");
-	tr.append(getCodeCell(channel), getNameCell(channel));
-	$("#channel-list").append(tr);
-}
-
-function getCodeCell(channel) {
-	var cell = document.createElement("td");
-	var link = document.createElement("a");
-	link.href = "tel:" + channel.root_code.replace("#", "%23");
-	link.innerHTML = channel.root_code;
-	cell.append(link);
-	return cell;
-}
-
-function getNameCell(channel) {
-	var cell = document.createElement("td");
-	var name = channel.name;
-	cell.append(country == null ? name + " " + channel.country_alpha2.toUpperCase() : name);
-	return cell;
-}
-
-function getCountryFlag(country) {
-	const codePoints = country.alpha2.toUpperCase()
-	    .split('')
-	    .map(char =>  127397 + char.charCodeAt());
-	return String.fromCodePoint(...codePoints);
 }
 
 function onLoadCountries(result) {
 	countries = result.map(function(d) { return d; });
 	loadChannels();
-	fillInDropdowns();
+	fillInCountries();
+	$("#country-select").change(function() {
+		var name = "", alpha2 = "";
+		$( "select option:selected" ).each(function() { name = $(this).text(); alpha2 = $(this).val(); });
+		loadChannels(alpha2);
+	})
+}
+
+function fillInCountries() { 
+	$("#countries-loading").hide();
+	$("#channels-loading").hide();
+	countries.forEach(country => addCountryToDropdown(country));
+}
+
+function addCountryToDropdown(country) {
+	var opt = document.createElement("option");
+	opt.value = country.alpha2;
+	opt.text = country.name;
+	$("#country-select").append(opt);
+}
+
+function loadChannels() {
+	const urlParams = new URLSearchParams(window.location.search);	
+	if (urlParams.get("country")) {
+		country = countries.find(c => { return c.alpha2.toUpperCase() === urlParams.get("country").toUpperCase(); });
+	}
+	loadChannels(country.alpha2);
+}
+
+function loadChannels(country_alpha2) {
+	var channel_url = root_url + "api/channels?bookmarked=true&order_key=name";
+	if (country_alpha2) {
+		// setPageCountry(country_alpha2);
+		channel_url += "&country=" + country_alpha2;
+	}
+	$("#no-country-data").hide();
+	$("#channels-loading").show();
+	$("#channel-list").empty();
+	load(channel_url, onLoadChannels, channelsError);
+}
+
+function setPageCountry(country) {
+	$("#selected-country-dropdown").text(getCountryFlag(country) + " " + country.name.toUpperCase());
+	document.title = document.title + ": " + country.name;
 }
 
 function onLoadChannels(result) {
 	channels = result.data.map(function(d) { return d.attributes; });
-	fillInList();
+	fillInChannels();
+	loadActions(channels[0].country_alpha2);
+}
+
+function fillInChannels() {
+	console.log("channels loaded");
+	$("#channel-list").empty();
+	channels.forEach(channel => addChannel(channel));
+}
+
+function addChannel(channel) {
+	var div = document.createElement("div");
+	div.id = "channel-" + channel.id;
+	div.classList.add("channel-info")
+	var head = document.createElement("div");
+	head.classList.add("level")
+	var left = document.createElement("div");
+	left.classList.add("level-left")
+	left.append(getLogo(channel), getHead(channel.name));
+	head.append(left, getCodeLink(channel));
+	div.append(head, getActionTable())
+	$("#channel-list").append(div);
+	$("#channel-" + channel.id).hide();
+}
+
+function getLogo(channel) {
+	var img = document.createElement("img");
+	img.height = 64;
+	img.width = 64;
+	img.src = root_url + channel.logo_url;
+	img.classList.add("level-item", "logo");
+	return img;
+}
+
+function getHead(text) {
+	var h3 = document.createElement("h3");
+	h3.append(text);
+	h3.classList.add("level-item")
+	return h3;
+}
+
+
+function getCodeLink(channel) {
+	var link = document.createElement("a");
+	link.href = "tel:" + channel.root_code.replace("#", "%23");
+	link.innerHTML = channel.root_code;
+	link.classList.add("is-pulled-right")
+	return link;
+}
+
+function getActionTable() {
+	var table = document.createElement("table");
+	var thead = document.createElement("tr");
+	var th1 = document.createElement("th");
+	var th2 = document.createElement("th");
+	var th3 = document.createElement("th");
+	var th4 = document.createElement("th");
+	var th5 = document.createElement("th");
+	th1.append("Action ID");
+	th2.append("Type");
+	th3.append("Recipient institution");
+	th4.append("Required parameters");
+	th5.append("Confirmed working");
+
+	thead.append(th1);
+	thead.append(th2);
+	thead.append(th3);
+	thead.append(th4);
+	thead.append(th5);
+	table.append(thead);
+	table.classList.add("is-fullwidth");
+	return table;
+}
+
+function loadActions(country_alpha2) {
+	console.log("loading actions for " + country_alpha2);
+	var action_url = root_url + "api/channel_actions?is_configured=true&country=" + country_alpha2;
+	$.ajax({type: "GET", url: action_url, success: onLoadActions, actionsError });
+}
+
+function onLoadActions(result) {
+	console.log("loaded actions");
+	actions = result.data.map(function(d) { return d.attributes; });
+	fillInActions();
+}
+
+function fillInActions() {
+	actions.forEach(action => addAction(action));
+	if ($("#channels-loading").is(":visible")) {
+		$("#channels-loading").hide();
+		$("#no-country-data").show();
+	}
+
+}
+
+function addAction(action) {
+	$("#channels-loading").hide();
+	var tr = document.createElement("tr");
+	tr.id = "action-" + action.public_id;
+	tr.append(getTextCell(action.public_id), getTextCell(action.transaction_type), 
+		getTextCell(action.to_institution_name ? action.to_institution_name : ""), getTextCell(action.required_params), getBooleanCell(action.has_successful_since_open));
+	$("#channel-" + action.channel_id + " table").append(tr);
+	$("#channel-" + action.channel_id).show();
+}
+
+function getTextCell(text) {
+	var cell = document.createElement("td");
+	cell.append(text);
+	return cell;
+}
+
+function getBooleanCell(isTrue) {
+	var cell = document.createElement("td");
+	var img = document.createElement("img");
+	img.src = isTrue ? "../assets/images/ic_check.svg" : "../assets/images/ic_warning.svg";
+	img.classList.add("is-pulled-right");
+	cell.append(img);
+	return cell;
 }
 
 function countriesError() {
@@ -106,6 +189,10 @@ function countriesError() {
 
 function channelsError() {
 	$("#channels-loading").text("Network error, please reload.")
+}
+
+function actionsError() {
+	$("#actions-loading").text("Network error, please reload.")
 }
 
 $(document).ready(function() {

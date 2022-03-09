@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="24px" viewBox="0 0 28 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <g id="UI-Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.1-Transaction-Detail---Eror-Transaction-(Mobile)" transform="translate(-50.000000, -254.000000)" fill="#D54B4B">
+            <g id="Group-4" transform="translate(47.000000, 248.000000)">
+                <g id="ic_warning" transform="translate(0.000000, 1.000000)">
+                    <path d="M29.285695,28.3333333 C30.324527,28.3333333 30.7426865,27.612567 30.2040718,26.696922 L17.9625949,5.8864113 C17.4309684,4.98264629 16.5760198,4.97076633 16.0374051,5.8864113 L3.79592821,26.696922 C3.26430174,27.600687 3.68129372,28.3333333 4.71430497,28.3333333 L29.285695,28.3333333 Z M15.7121212,24.5307018 L15.7121212,21.995614 L18.2878788,21.995614 L18.2878788,24.5307018 L15.7121212,24.5307018 Z M15.7121212,19.4605263 L15.7121212,14.3903509 L18.2878788,14.3903509 L18.2878788,19.4605263 L15.7121212,19.4605263 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
