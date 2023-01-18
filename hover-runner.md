@@ -5,7 +5,7 @@ permalink: /hover-runner
 
 # Hover Runner (Previously Tester App)
 
-Hover runner is a lightweight app that allows you to test actions on a real Android device and SIM card. You can visit your Hover dashboard to download a precompiled APK. Once installed on a device you must login with the same credentials as the Hover dashboard.
+Hover runner is a lightweight app that allows you to test actions on a real Android device and SIM card. You can visit your Hover dashboard to download a precompiled APK or build it yourself from [source](https://github.com/UseHover/RunnerV2). Once installed on a device you must login with the same credentials as the Hover dashboard.
 
 <div class="call-out call-out-info">
     <p>Hover Runner is in beta release. Please contact us via the chat button below or at <a target="_blank" href="mailto:support@usehover.com">support@usehover.com</a> if you have questions about the app.</p>
