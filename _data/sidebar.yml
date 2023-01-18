@@ -30,8 +30,8 @@ menu:
       - page: Permissions
         url: /permissions
         
-      - page: Hover tester
-        url: /hover-tester
+      - page: Hover Runner
+        url: /hover-runner
         
       - page: Releases
         url: /releases
